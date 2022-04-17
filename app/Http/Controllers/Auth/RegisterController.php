@@ -47,7 +47,6 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
-    // バリデーションを日本語で表示する。
     protected function validator(array $data)
     {
         return Validator::make($data, [
