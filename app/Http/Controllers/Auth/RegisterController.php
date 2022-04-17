@@ -47,15 +47,15 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
+    // バリデーションを日本語で表示する。
     protected function validator(array $data)
     {
         return Validator::make($data, [
             'user_name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-        ]);
+        ], RegistersUsers::$registerErrorMessage);
     }
-
     /**
      * Create a new user instance after a valid registration.
      *
