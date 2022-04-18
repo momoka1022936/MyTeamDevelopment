@@ -15,7 +15,7 @@
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('名前') }}</label>
 
                             <div class="col-md-6">
-                                <input id="user_name" type="text" class="form-control @error('user_name') is-invalid @enderror" name="user_name" value="{{ old('user_name') }}" required autocomplete="user_name" autofocus>
+                                <input id="user_name" type="text" class=" form-control @error('user_name') is-invalid @enderror" name="user_name" value="{{ old('user_name') }}" required autocomplete="user_name" autofocus>
 
                                 @error('user_name')
                                     <span class="invalid-feedback" role="alert">
@@ -30,7 +30,7 @@
 
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
-
+                                
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -54,7 +54,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('パスワード確認用') }}</label>
+                            <label for="password-con firm" class="col-md-4 col-form-label text-md-right">{{ __('パスワード確認用') }}</label>
 
                             <div class="col-md-6">
                                 <input id="password-confirm" type="password" class="form-control @error('password_confirmation') is-invalid @enderror" name="password_confirmation" required autocomplete="new-password">
@@ -72,8 +72,13 @@
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('登録する') }}
                                 </button>
+                                <button type="submit" class="btn btn-primary">
+                                    <a class="text-white" href="{{ route('login') }}">{{ __('ログイン画面へ') }}</a>
+                                </button>
                             </div>
                         </div>
+                        
+                            
                     </form>
                 </div>
             </div>
