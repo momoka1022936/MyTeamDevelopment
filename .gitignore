@@ -1,6 +1,9 @@
 /node_modules
 /public/hot
 /public/storage
+public/css/app.css
+public/js/app.js
+public/mix-manifest.json
 /storage/*.key
 /vendor
 .env
@@ -8,6 +11,8 @@
 .phpunit.result.cache
 docker-compose.override.yml
 Homestead.json
+composer.lock
+package-lock.json
 Homestead.yaml
 npm-debug.log
 yarn-error.log
