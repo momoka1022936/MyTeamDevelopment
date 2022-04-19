@@ -18,6 +18,7 @@ class CreateStocksTable extends Migration
             $table->bigInteger('user_id')->index();
             $table->string('stock_item_name', 100)->unique()->index();
             $table->unsignedDouble('quantity', 9, 3);
+            $table->datetime('stock_expiration');
             $table->timestamps();
         });
     }

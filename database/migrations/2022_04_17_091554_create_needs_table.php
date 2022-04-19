@@ -18,6 +18,7 @@ class CreateNeedsTable extends Migration
             $table->bigInteger('user_id')->index();
             $table->string('need_item_name', 100)->unique()->index();
             $table->unsignedDouble('quantity', 9, 3);
+            $table->datetime('date_of_purchase');
             $table->timestamps();
         });
     }
