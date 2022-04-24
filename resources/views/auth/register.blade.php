@@ -72,7 +72,7 @@
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('登録する') }}
                                 </button>
-                                <button type="submit" class="btn btn-primary">
+                                <button type="button" class="btn btn-primary">
                                     <a class="text-white" href="{{ route('login') }}">{{ __('ログイン画面へ') }}</a>
                                 </button>
                             </div>

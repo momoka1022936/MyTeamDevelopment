@@ -44,7 +44,7 @@
                                     <button type="submit" class="btn btn-dark-none btn-primary">
                                         {{ __('ログイン') }}
                                     </button>
-                                    <a href="register.blade.php" class="btn btn-primary">会員登録</a>
+                                    <a href="{{ route('register') }}" class="btn btn-primary">会員登録</a>
                                 </div>
                             </div>    
                         </form>                          
