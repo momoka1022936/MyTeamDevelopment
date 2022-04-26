@@ -46,7 +46,11 @@
     <!-- メイン画面 -->
     <div class="flex-column px-0 py-3 d-flex col-3 border-right  border-left">
         <ul class="nav nav-pills flex-column mb-auto">
-            <!-- これで登録したい商品を入力できる。 -->
+            <!-- これで登録したい商品を入力できる。仮でフォーム入れてます -->
+            <input type="text" name="needsname" class= mb-3 >
+            <input type="text" name="needsname" class= mb-3 >
+            <input type="text" name="needsname" class= mb-3 >
+            <input type="text" name="needsname" class= mb-3 >
             {{-- @foreach ($stocks as $stock) --}}
             <li class="nav-item text-center mb-3 border-bottom">{{-- $stock->stock_item_name --}}</li>
             {{-- @endforeach --}}
@@ -54,7 +58,11 @@
     </div>
     <div class="flex-column  px-0 py-3 d-flex col-2 border-right ">
         <ul class="nav nav-pills flex-column mb-auto">
-            <!-- これで登録したい個数を入力できる。 -->
+            <!-- これで登録したい個数を入力できる仮でフォーム入れてます。 -->
+            <input type="text" name="how many" class= mb-3 >
+            <input type="text" name="needsname" class= mb-3 >
+            <input type="text" name="needsname" class= mb-3 >
+            <input type="text" name="needsname" class= mb-3 >
             {{-- @foreach ($stocks as $stock)--}}
             <li class="nav-item text-center  mb-3 border-bottom">{{-- $stock->quantity --}}</li>
             {{-- @endforeach --}}
@@ -62,7 +70,11 @@
     </div>
     <div class="flex-column px-0 py-3  d-flex col-4 border-right">
         <ul class="nav nav-pills flex-column mb-auto">
-            <!-- これでいつまでに購入するか設定できる。 -->
+            <!-- これでいつまでに購入するか設定できる。仮でフォーム入れてます -->
+            <input type="text" name="until when" class= mb-3 >
+            <input type="text" name="needsname" class= mb-3 >
+            <input type="text" name="needsname" class= mb-3 >
+            <input type="text" name="needsname" class= mb-3 >
             {{-- @foreach ($stocks as $stock) --}}
             <li class="nav-item text-center  mb-3 border-bottom">{{-- $stock->stock_expiration --}}</li>
             {{-- @endforeach --}}
@@ -70,8 +82,12 @@
     </div>
     <div class="flex-column px-0 py-3  d-flex col-1 border-right">
         <ul class="nav nav-pills flex-column mb-auto">
-            <!-- これでこの列に入力した内容を取り消せる。 -->
+            <!-- これでこの列に入力した内容を取り消せる。仮でキャンルボタンをいれている -->
             {{-- @foreach ($stocks as $stock) --}}
+            <a href="/" class="btn btn-primary mb-1">キャンセル</a>
+            <a href="/" class="btn btn-primary mb-1">キャンセル</a>
+            <a href="/" class="btn btn-primary mb-1">キャンセル</a>
+            <a href="/" class="btn btn-primary mb-1">キャンセル</a>
             <li class="nav-item text-center  mb-3 border-bottom">{{-- $stock->stock_expiration --}}</li>
             {{-- @endforeach --}}
         </ul>
