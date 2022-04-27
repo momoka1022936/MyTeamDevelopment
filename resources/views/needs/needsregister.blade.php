@@ -44,53 +44,17 @@
         </a>
     </div>
     <!-- メイン画面 -->
-    <div class="flex-column px-0 py-3 d-flex col-3 border-right  border-left">
-        <ul class="nav nav-pills flex-column mb-auto">
-            <!-- これで登録したい商品を入力できる。仮でフォーム入れてます -->
-            <input type="text" name="needsname" class= mb-3 >
-            <input type="text" name="needsname" class= mb-3 >
-            <input type="text" name="needsname" class= mb-3 >
-            <input type="text" name="needsname" class= mb-3 >
-            {{-- @foreach ($stocks as $stock) --}}
-            <li class="nav-item text-center mb-3 border-bottom">{{-- $stock->stock_item_name --}}</li>
-            {{-- @endforeach --}}
-        </ul>
-    </div>
-    <div class="flex-column  px-0 py-3 d-flex col-2 border-right ">
-        <ul class="nav nav-pills flex-column mb-auto">
-            <!-- これで登録したい個数を入力できる仮でフォーム入れてます。 -->
-            <input type="text" name="how many" class= mb-3 >
-            <input type="text" name="needsname" class= mb-3 >
-            <input type="text" name="needsname" class= mb-3 >
-            <input type="text" name="needsname" class= mb-3 >
-            {{-- @foreach ($stocks as $stock)--}}
-            <li class="nav-item text-center  mb-3 border-bottom">{{-- $stock->quantity --}}</li>
-            {{-- @endforeach --}}
-        </ul>
-    </div>
-    <div class="flex-column px-0 py-3  d-flex col-4 border-right">
-        <ul class="nav nav-pills flex-column mb-auto">
-            <!-- これでいつまでに購入するか設定できる。仮でフォーム入れてます -->
-            <input type="text" name="until when" class= mb-3 >
-            <input type="text" name="needsname" class= mb-3 >
-            <input type="text" name="needsname" class= mb-3 >
-            <input type="text" name="needsname" class= mb-3 >
-            {{-- @foreach ($stocks as $stock) --}}
-            <li class="nav-item text-center  mb-3 border-bottom">{{-- $stock->stock_expiration --}}</li>
-            {{-- @endforeach --}}
-        </ul>
-    </div>
-    <div class="flex-column px-0 py-3  d-flex col-1 border-right">
-        <ul class="nav nav-pills flex-column mb-auto">
-            <!-- これでこの列に入力した内容を取り消せる。仮でキャンルボタンをいれている -->
-            {{-- @foreach ($stocks as $stock) --}}
-            <a href="/" class="btn btn-primary mb-1">キャンセル</a>
-            <a href="/" class="btn btn-primary mb-1">キャンセル</a>
-            <a href="/" class="btn btn-primary mb-1">キャンセル</a>
-            <a href="/" class="btn btn-primary mb-1">キャンセル</a>
-            <li class="nav-item text-center  mb-3 border-bottom">{{-- $stock->stock_expiration --}}</li>
-            {{-- @endforeach --}}
-        </ul>
+    
+    <!-- 買い物リスト登録フォーム -->
+    <form method="post" class="form-inline mx-5" action="/needs/needsregister" >
+        @csrf
+        <input type="hidden" class="mx-5" name="id" value="ID"><br>
+        <input type="text" class="mx-5" name="name" value="商品名"><br>
+        <input type="number" class="mx-5" name="number"><br>
+        <input type="date" class="mx-5" name="datetime">
+        <p><input type="submit" class="mx-5" value="登録"></p>
+    </form>
+  
     </div>
 </div>
 @endsection
