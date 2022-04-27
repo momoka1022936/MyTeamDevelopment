@@ -4,7 +4,7 @@
 <!-- ヘッダー -->
 <header class="flex-md-nowrap border-bottom d-flex container-fluid m-0 row">
     <div class="align-items-center mb-3 mb-md-0 me-md-auto flex-column d-flex col-2 m-0">
-        <span class="h2 text-dark text-center">買い物リスト<br>一覧</span>
+        <span class="h2 text-dark text-center">買い物リスト<br>編集</span>
     </div>
     <div class="align-items-center mb-3 mb-md-0 me-md-auto flex-column d-flex col-3 m-0">
         <span class="h2 text-dark text-center">名前</span>
@@ -24,13 +24,13 @@
         <hr>
         <ul class="nav nav-pills flex-column mb-auto">
         <li class="nav-item">
-            <a href="#" class="nav-link active" aria-current="page">
-            <svg class="bi me-2" width="16" height="16"><use xlink:href="#home"/></svg>
-            在庫管理一覧
+            <a href="{{ route('/home') }}" class="nav-link active" aria-current="page">
+            <svg class="bi me-2" width="16" height="16"></svg>
+            買い物リストへ
             </a>
         </li>
         <li>
-            <a href="{{ route('update-needs-form') }}" class="nav-link active link-dark mt-2">
+            <a href="" class="nav-link active link-dark mt-2">
             <svg class="bi me-2" width="16" height="16"></svg>
             買い物リスト編集
             </a>
