@@ -40,7 +40,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">
+              <a class="nav-link" href="{{ route('stocks') }}">
                 <span data-feather="users"></span>
                 選択したものを<br>在庫管理画面に登録
               </a>

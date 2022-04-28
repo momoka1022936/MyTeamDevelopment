@@ -10019,3 +10019,11 @@ h3 {
     border-color: #dee2e6;
   }
 }
+.form-inline-alignDelete{
+  display: flex;
+  flex-flow: row wrap;
+}
+.last div:last-child  input{
+  margin: 0;
+  border: none;
+}

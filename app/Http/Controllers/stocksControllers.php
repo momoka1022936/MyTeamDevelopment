@@ -11,7 +11,11 @@ use Carbon\Carbon;
 class stocksControllers extends Controller
 {
     //
-
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     // stockテーブルのレコードを取得する処理
     //selectは取得するカラムを指定することができる。この場合はすべて取得している。
     public function stocks()
