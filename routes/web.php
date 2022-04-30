@@ -31,5 +31,5 @@ Route::post('/stockCreate',[App\Http\Controllers\stocksControllers::class,'stock
 /*買い物リスト登録画面*/
 
 Route::get('/needs/needsregister', [App\Http\Controllers\Needs\NeedsregisterControllers::class, 'needsregister']);
-//needsregister.blade.phpでneeds/needsregisterがpostされるとNeedsregisterControllersに行く、そして'needsregister'（登録画面）が表示される(登録される)
-Route::post('/needs/needsregister', [App\Http\Controllers\Needs\NeedsregisterControllers::class, 'needsregister']);
+//needsregister.blade.phpで'/needs/store'がpostされるとNeedsregisterControllersに行く、そして'needsregister'（登録画面）が表示される(登録される)
+Route::post('/needs/store', [App\Http\Controllers\Needs\NeedsregisterControllers::class, 'store' ])->name('needs.store');

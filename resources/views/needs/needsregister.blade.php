@@ -46,12 +46,12 @@
     <!-- メイン画面 -->
     
     <!-- 買い物リスト登録フォーム -->
-    <form method="post" class="form-inline mx-5" action="/needs/needsregister" >
+    <form method="post" class="form-inline mx-5" action="{{ route('needs.store') }}" >
         @csrf
-        <input type="hidden" class="mx-5" name="id" value="ID"><br>
-        <input type="text" class="mx-5" name="name" value="商品名"><br>
-        <input type="number" class="mx-5" name="number"><br>
-        <input type="date" class="mx-5" name="datetime">
+        <input type="hidden" class="mx-5" name="user_id" value="1"><br>
+        <input type="text" class="mx-5" name="need_item_name" value=""><br>
+        <input type="number" class="mx-5" name="quantity"><br>
+        <input type="date" class="mx-5" name="date_of_purchase">
         <p><input type="submit" class="mx-5" value="登録"></p>
     </form>
   

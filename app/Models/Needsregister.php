@@ -9,23 +9,11 @@ use \routes\web;
 class Needsregister extends Model
 {
     use HasFactory;
-
-
-//★
-    /**
-     * IDから一件のデータを取得する
-     */
-    public function getneedsregister($id)
-    {
-        // 「SELECT id, name, email WHERE id = ?」を発行する
-        $query = $this->select([
-            'name',
-            'number',
-            'datetime'
-        ])->where([
-            'id' => $id
-        ]);
-        // first()は1件のみ取得する関数
-        return $query->first();
-    }
-}
+    protected $table = 'needs';
+    protected $fillable = [
+        'user_id',
+        'need_item_name',
+        'quantity',
+        'date_of_purchase',
+    ];
+}    
