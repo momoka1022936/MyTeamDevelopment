@@ -32,4 +32,11 @@ class User extends Authenticatable
         'password',
     ];
 
+    /**
+     * ユーザーの保持する買い物リスト
+     */
+    public function needs()
+    {
+        return $this->hasMany(Need::class);
+    }
 }
