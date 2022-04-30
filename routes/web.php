@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Needs\NeedsregisterControllers;
 
 
 /*
@@ -28,3 +29,8 @@ Route::get('/stocks', [App\Http\Controllers\stocksControllers::class, 'stocks'])
 Route::get('/stocksRegister', [App\Http\Controllers\stocksControllers::class, 'stocksRegister'])->name('stocksRegister');
 Route::post('/stockCreate',[App\Http\Controllers\stocksControllers::class,'stockCreate']);
 
+/*買い物リスト登録画面*/
+
+Route::get('/needs/needsregister', [App\Http\Controllers\Needs\NeedsregisterControllers::class, 'needsregister']);
+//needsregister.blade.phpで'/needs/store'がpostされるとNeedsregisterControllersに行く、そして'needsregister'（登録画面）が表示される(登録される)
+Route::post('/needs/store', [App\Http\Controllers\Needs\NeedsregisterControllers::class, 'store' ])->name('needs.store');
