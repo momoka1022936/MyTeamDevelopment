@@ -10027,3 +10027,6 @@ h3 {
   margin: 0;
   border: none;
 }
+input[type=checkbox] {
+  transform: scale(3);
+}

@@ -28,23 +28,27 @@ class stocksControllers extends Controller
     //登録画面の表示
     public function stocksRegister()
     {
-
         return view('stocks.stocksRegister');
     }
 
     // stocksのテーブルに登録するための機能
     public function stockCreate(Request $request){
-
-        $stock = new Stock;
-        $stock->user_id = $request->user_id;
-        $stock->stock_item_name = $request->stock_item_name;
-        $stock->quantity = $request->quantity;
-        $stock->stock_expiration = $request->stock_expiration;
-
-        $stock->save();
+        $stocks= new stock();
+        $stocks->fill($request->all())->save();
 
         return redirect('/stocks');
     }
-    
+
+    public function stockEdit(){
+        $stocks = DB::select('select * from stocks');
+        $data = ['stocks' => $stocks];
+        return view('stocks.stocksEdit', $data);
+    }
+
+    public function stockUpdate(Request $request){
+        //作成中
+        return redirect('/stocks');
+    }
 
 }
+
