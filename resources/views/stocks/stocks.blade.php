@@ -71,7 +71,7 @@
         <ul class="nav nav-pills flex-column mb-auto">
             <!-- これで登録された期限をすべて表示することができる。 -->
             @foreach ($stocks as $stock)
-            <!-- このenptyでstock_expirationがnullの場合期限が設定されていないと出る。 -->
+            <!-- このemptyでstock_expirationがnullの場合期限が設定されていないと出る。 -->
                 @if (empty($stock->stock_expiration))
                     <li class="nav-item text-center  mb-3 border-bottom">期限が設定されていません</li>
                 @else

@@ -5,7 +5,7 @@
         <div class="title">在庫管理登録</div>
         <form action="/stockCreate" method="post">
             @csrf
-            <div class="user-datails">
+            <div class="user-details">
                 <div class="input-box">
                     <span class="details">ユーザー名</span>
                     <input type="text" name="user_id" placeholder="Enter your name" required>
