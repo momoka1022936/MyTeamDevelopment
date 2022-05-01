@@ -21,8 +21,8 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\Needs\NeedsController::class, 'index'])->name('/home');
-Route::get('/update-needs-form', [App\Http\Controllers\Needs\NeedsController::class, 'updateForm'])->name('update-needs-form');
+Route::get('/home', [App\Http\Controllers\Needs\NeedController::class, 'index'])->name('/home');
+Route::get('/update-needs-form', [App\Http\Controllers\Needs\NeedController::class, 'updateForm'])->name('update-needs-form');
 
 Route::get('/stocks', [App\Http\Controllers\stocksControllers::class, 'stocks'])->name('stocks');
 
