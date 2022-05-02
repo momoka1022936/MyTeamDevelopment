@@ -56,9 +56,9 @@
             @if (count($needs) > 0)
             @foreach($needs as $need)
                 <tr>
-                    <td class="nav-item text-center  mb-3 border-bottom">{{$need->need_item_name}}</td>
-                    <td class="nav-item text-center  mb-3 border-bottom">{{$need->quantity}}</td>
-                    <td class="nav-item text-center  mb-3 border-bottom">{{$need->date_of_purchase}}</td>
+                    <td class="nav-item text-center  mb-3 border-bottom border-right">{{$need->need_item_name}}</td>
+                    <td class="nav-item text-center  mb-3 border-bottom border-right">{{$need->quantity}}</td>
+                    <td class="nav-item text-center  mb-3 border-bottom border-right">{{$need->date_of_purchase}}</td>
                 </tr>
             
             @endforeach
