@@ -38,3 +38,4 @@ Route::post('/needs/store', [App\Http\Controllers\Needs\NeedsregisterControllers
 Route::get('/stockEdit',[App\Http\Controllers\stocksControllers::class,'stockEdit'])->name('stocksEdit');
 Route::post('/stockUpdate',[App\Http\Controllers\stocksControllers::class, 'stockUpdate']);
 
+Route::post('/stockDelete',[App\Http\Controllers\stocksControllers::class, 'stockDelete']);

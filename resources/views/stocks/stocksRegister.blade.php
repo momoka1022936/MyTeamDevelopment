@@ -48,14 +48,14 @@
         </li>
         <div class="button nav-link active link-dark mt-2">
             <!-- 登録ボタン -->
-            <input form="hoge" class="btn btn-primary" type="submit" value="入力内容を登録する">
+            <input form="path" class="btn btn-primary" type="submit" value="入力内容を登録する">
         </div>
         <div class="button nav-link active link-dark mt-2">
             <!-- 入力内容のリセットボタン -->
-            <input form="hoge" class="btn btn-primary" type="reset" name="reset" value="入力内容をすべて消去" >
+            <input form="path" class="btn btn-primary" type="reset" name="reset" value="入力内容をすべて消去" >
         </div>
         <div>
-            <input form="hoge" type="hidden" name="user_id"  value="1">
+            
         </div>
         </ul>
         <hr>
@@ -68,14 +68,15 @@
 
     <!-- メイン画面 -->
     <div class="flex-column px-0 d-flex col-10 border-left ml-2 row">
-        <form  id="hoge" class="pt-3 form-inline-alignDelete" action="/stockCreate" method="post">
+        <form  id="path" class="pt-3 form-inline-alignDelete" action="/stockCreate" method="post">
 
             @csrf
             <!-- 名前の入力 -->
             <div class="col-3 border-right p-0 ">
                 @for($i = 0; $i < 12; $i++)
                     <ul class="border-bottom p-0   mx-2">
-                        <input class="w-100 mb-2" type="text" name="stock_item_name">
+                        <input class="w-100 mb-2" type="text" name="stock_item_name[]">
+                        <input form="path" type="hidden" name="user_id[]">
                     </ul>
                 @endfor
             </div>
@@ -83,7 +84,7 @@
             <div class="minus col-2  border-right  p-0">
             @for($i = 0; $i < 12; $i++)
                 <ul class="border-bottom p-0 mx-2">
-                    <input class="w-100 mb-2 minus" type="number" name="quantity" pattern="^[0-9]+$">
+                    <input class="w-100 mb-2 minus" type="number" name="quantity[]" pattern="^[0-9]+$">
                 </ul>
             @endfor
             </div>
@@ -91,7 +92,7 @@
             <div class="minus  col-3 m-0 border-right p-0">
             @for($i = 0; $i < 12; $i++)
                 <ul class="border-bottom p-0  mx-2">
-                    <input class="w-100 mb-2 minus" type="number" name="quantity" pattern="^[0-9]+$">
+                    <input class="w-100 mb-2 minus" type="number" name="quantity[]" pattern="^[0-9]+$">
                 </ul>
             @endfor
             </div>
@@ -99,7 +100,7 @@
             <div class="col-4 mb-2 pb-3 border-right p-0">
             @for($i = 0; $i < 12; $i++)
                 <ul class="border-bottom p-0 mx-2">
-                    <input class="w-100 mb-2" type="date" name="stock_expiration">
+                    <input class="w-100 mb-2" type="date" name="stock_expiration[]">
                 </ul>
             @endfor
             </div>
