@@ -48,15 +48,13 @@
         </li>
         <div class="button nav-link active link-dark mt-2">
             <!-- 変更 -->
-            <input form="hoge" class="btn btn-primary" type="submit" value="入力内容を変更する">
+            <input form="path" class="btn btn-primary" type="submit" value="入力内容を変更する">
         </div>
         <div class="button nav-link active link-dark mt-2">
-            <!-- 入力内容のリセットボタン -->
-            <input form="hoge" class="btn btn-primary" type="reset" name="reset" value="入力内容をすべて消去" >
+            <!-- 入力内容の削除ボeタン -->
+            <input form="path" class="btn btn-primary" type="reset" name="stockDelete[]" value="選択した内容を削除する" >
         </div>
-        <div>
-            <input form="hoge" type="hidden" name="user_id"  value="1">
-        </div>
+
         </ul>
         <hr>
         <a class="dropdown-item border border-2 rounded text-center " href="{{ route('logout') }}"
@@ -68,14 +66,15 @@
 
     <!-- メイン画面 -->
     <div class="flex-column px-0 d-flex col-10 border-left ml-2 row">
-        <form  id="hoge" class="pt-3 form-inline-alignDelete" action="/stockUpdate" method="post">
+        <form  id="path" class="pt-3 form-inline-alignDelete" action="/stockUpdate" method="post">
 
             @csrf
             <!-- 名前の入力 -->
             <div class="col-3 border-right p-0 ">
             @foreach ($stocks as $stock)
                     <ul class="border-bottom p-0 mx-2">
-                        <input class="w-100 mb-2" type="text" name="stock_item_name" value="{{$stock->stock_item_name}}">
+                    <input class="w-100 mb-2" type="hidden" name="id" value="">
+                        <input class="w-100 mb-2" type="text" name="stock_item_name[]" value="{{$stock->stock_item_name}}">
                     </ul>
             @endforeach
             </div>
@@ -83,7 +82,7 @@
             <div class="minus col-2  border-right  p-0">
             @foreach ($stocks as $stock)
                 <ul class="border-bottom p-0 mx-2">
-                    <input class="w-100 mb-2 minus" type="number" name="quantity" value="{{$stock->quantity}}" pattern="^[0-9]+$">
+                    <input class="w-100 mb-2 minus" type="number" name="quantity[]" value="{{$stock->quantity}}" pattern="^[0-9]+$">
                 </ul>
             @endforeach
             </div>
@@ -91,7 +90,7 @@
             <div class="minus  col-3 p-0 border-right">
             @foreach ($stocks as $stock)
                 <ul class="border-bottom p-0  mx-2">
-                    <input class="w-100 mb-2 minus" type="number" name="quantity" value="{{$stock->quantity}}" pattern="^[0-9]+$">
+                    <input class="w-100 mb-2 minus" type="number" name="quantity[]" value="{{$stock->quantity}}" pattern="^[0-9]+$">
                 </ul>
             @endforeach
             </div>
@@ -99,14 +98,14 @@
             <div class="col-3 mb-2 border-right">
             @foreach ($stocks as $stock)
                 <ul class="border-bottom p-0 mx-2">
-                    <input class="w-100 mb-2" type="date"  name="stock_expiration" value="{{ $stock->stock_expiration }}">
+                    <input class="w-100 mb-2" type="date"  name="stock_expiration[]" value="{{ $stock->stock_expiration }}">
                 </ul>
             @endforeach
             </div>
             <div class="col-1 mb-2 border-right">
             @foreach ($stocks as $stock)
                 <ul class="border-bottom p-0 mx-2">
-                    <input class="w-100 mb-3 mt-2" type="checkbox">
+                    <input class="w-100 mb-3 mt-2" id="delete" type="checkbox" name="delete[]" value="{{ $stock->id }}">
                 </ul>
             @endforeach
             </div>
