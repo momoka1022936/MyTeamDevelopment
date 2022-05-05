@@ -36,7 +36,7 @@
             </a>
         </li>
         <li>
-            <a href="#" class="nav-link active link-dark mt-2">
+            <a href="{{ route('/home') }}" class="nav-link active link-dark mt-2">
             <svg class="bi me-2" width="16" height="16"></svg>
             買い物リストへ
             </a>
