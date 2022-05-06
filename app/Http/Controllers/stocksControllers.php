@@ -60,18 +60,18 @@ class stocksControllers extends Controller
 
     public function stockUpdate(Request $request){
         //作成中
-        // 更新機能作成中
-        // $stocks = \App\Models\Stock::all();
-        // $test = $request->all();
-        // $i = 0;
-        // foreach($test as $request->id => $id){
-        //     $stock = Stock::find($id);
-        //     $stock->stock_item_name = $request->stock_item_name[$i];
-        //     $stock->quantity = $request->quantity[$i];
-        //     $stock->stock_expiration = $request->stock_expiration[$i];
-        //     $stock->save();
-        //     $i++;
-        // }
+
+        $stocks = $request->only(['id', 'stock_item_name','quantity','stock_expiration']);
+        $i = 0;
+        foreach($request->id as $id){
+            $stock = Stock::find($id);
+            $stock->stock_item_name = $request->stock_item_name[$i];
+            $stock->quantity = $request->quantity[$i];
+            $stock->stock_expiration = $request->stock_expiration[$i];
+            $stock->save();
+            $i++;
+        }
+            
         return redirect('/stocks');
     }
 
