@@ -10030,3 +10030,7 @@ h3 {
 input[type=checkbox] {
   transform: scale(3);
 }
+
+.text-red{
+  color: #ff0000;
+}

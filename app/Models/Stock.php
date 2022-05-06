@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use App\Http\Controllers\stocksControllers;
-use App\Models\Flight;
+use Carbon\Carbon;
 
 class Stock extends Model
 {
@@ -19,6 +19,10 @@ class Stock extends Model
         'quantity',
         'stock_expiration',
     ];
-
-    
+    public function user(){
+        return $this->belongsTo('App\User');
+      }
+      protected $dates = [
+        'stock_expiration' => 'date',
+    ];
 }
