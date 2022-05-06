@@ -75,7 +75,7 @@ class stocksControllers extends Controller
         return redirect('/stocks');
     }
 
-    public function stockDelete(Request $request,)
+    public function stockDelete(Request $request)
     {
       //チェックボックスでチェックしたidを取得
       $delete = array($request->input('delete'));
