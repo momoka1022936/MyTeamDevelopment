@@ -22,10 +22,14 @@ class NeedController extends Controller
     /**
      * 買い物リスト編集フォーム
      */
-    public function updateForm()
+    public function needEdit()
     {
         $needs = DB::select('select * from needs');
         $data = ['needs' => $needs];
         return view('needs.update', $data);
     }
+
+    /**
+     * 買い物リスト編集
+     */
 }
