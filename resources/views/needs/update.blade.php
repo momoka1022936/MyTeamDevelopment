@@ -38,7 +38,7 @@
                 </a>
             </li>
             <li>
-                <a href="{{ route('stocks') }}" class="nav-link active link-dark mt-2">
+                <a href="{{ route('needUpdate') }}" class="nav-link active link-dark mt-2 p-0">
                     <svg class="bi me-2" width="16" height="16"></svg>
                     <input form="needUpdate" class="btn btn-primary" type="submit" value="入力内容を変更する">
                 </a>
@@ -52,10 +52,10 @@
     </div>
     <!-- メイン画面  -->
     <div class="flex-column px-0 d-flex col-10 border-left ml-2 row">
-        <form id="needUpdate" class="pt-3 form-inline-alignDelete" action="{{ route('needUpdate') }}" method="post">
+        <form id="needUpdate" class="col-11 pt-3 form-inline-alignDelete" action="{{ route('needUpdate') }}" method="post">
             @csrf
             <!-- 名前の入力 -->
-            <div class="col-3 border-right p-0 ">
+            <div class="col-4 border-right p-0 ">
                 @foreach ($needs as $need)
                 <ul class="border-bottom p-0 mx-3">
                     <input class="w-100 mb-2" type="hidden" name="id[]" value="{{ $need->id }}">
@@ -81,11 +81,11 @@
                 @endforeach
             </div>
         </form>
-        <form action="" class="pt-3 form-inline-alignDelete" method="post">
-            <div class="col-1 mb-2 border-right">
+        <form action="" class="col-1 pt-3 form-inline-alignDelete border-right" method="post">
+            <div class="mb-2">
                 @foreach ($needs as $need)
-                <ul class="border-bottom p-0 mx-2">
-                    <input class="w-100 mb-3 mt-2" id="delete" type="checkbox" name="delete[]" value="{{ $need->id }}">
+                <ul class="border-bottom mx-2">
+                    <input class="mb-3 ml-lg-n3 mr-4 mt-2" id="delete" type="checkbox" name="delete[]" value="{{ $need->id }}">
                 </ul>
                 @endforeach
             </div>
