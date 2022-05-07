@@ -3,24 +3,28 @@
 @section('content')
 <!-- ヘッダー -->
 <header class="flex-md-nowrap border-bottom d-flex container-fluid m-0 row">
-    <div class="align-items-center mb-3 mb-md-0 me-md-auto flex-column d-flex col-2 m-0">
+    <div class="align-items-center mb-3 mb-md-0 me-md-auto flex-column d-flex col-2 ">
         <span class="h2 text-dark text-center">買い物リスト<br>登録</span>
     </div>
-    <div class="align-items-center mb-3 mb-md-0 me-md-auto flex-column d-flex col-3 m-0">
+    <div class="align-items-center mb-3 mb-md-0 me-md-auto flex-column d-flex col-3 ">
         <span class="h2 text-dark text-center">名前</span>
     </div>
-    <div class="align-items-center mb-3 mb-md-0 me-md-auto flex-column d-flex col-2 m-0">
+    <div class="align-items-center mb-3 mb-md-0 me-md-auto flex-column d-flex col-4 ">
         <span class="h2 text-dark text-center">個数</span>
     </div>
-    <div class="align-items-center mb-3 mb-md-0 me-md-auto flex-column d-flex col-4 m-0">
+    <div class="align-items-center mb-3 mb-md-0 me-md-auto flex-column d-flex col-3">
         <span class="h2 text-dark text-center">期限</span>
+    </div>
+    <div class="align-items-center mb-3 mb-md-0 me-md-auto flex-column d-flex col-1 ">
+        <span class="h2 text-dark text-center"></span>
     </div>
 </header>
 
 <div class="container-fluid m-0 row">
 
     <!-- サイドメニュー -->
-    <div class="d-flex flex-column flex-shrink-0  p-3 col-2 border-right" style=" height:600px;">
+    <div class="d-flex flex-column flex-shrink-0  p-3 col-2" style=" height:600px; border-none">
+        <hr>
         <ul class="nav nav-pills flex-column mb-auto">
             <li class="nav-item mt-4">
                 <a href="{{ route('update-needs-form') }}" class="nav-link active" aria-current="page">
@@ -51,40 +55,48 @@
     <!-- メイン画面 -->
 
     <!-- 買い物リスト登録フォーム/一覧表示 -->
-    <form id="list" method="post" class="row"  action="{{ route('needs.store') }}"  >
-        @csrf
-        <div class="flex-column px-0 py-3 d-flex col-3 border-right  border-left">
-            <input type="hidden" class="mx-5" name="user_id" value="1">
-                <ul class="nav nav-pills flex-column mb-auto">
-                        <!-- これで名前を登録できる。 -->
-                    <input type="text" class="mx-5 px-2" name="need_item_name" value="">
+    <div class="flex-column px-0 d-flex col-10  ml-2 row text-center">
+        <form id="list" method="post" class="row border-left" action="{{ route('needs.store') }}"  >
+            @csrf
+            <div class="col-4 border-right p-0  ">
+                <input type="hidden" class="mx-5 px-4" name="user_id" value="1">
+                
+                    <!-- これで名前を登録できる。 -->
+                <input type="text" class="mx-auto px-2" name="need_item_name" value="">
+                <ul class="nav nav-pills flex-column mb-auto ">
                     <!-- これで登録された名前をすべて表示することができる。 -->
                     @foreach ($needs as $need)
-                    <li class="nav-item text-center mb-3 border-bottom">{{ $need->need_item_name }}</li>
+                    <li class="nav-item text-center mb-3 border-bottom ">{{ $need->need_item_name }}</li>
                     @endforeach
                 </ul>       
-        </div>
+            </div>
 
-        <div class="flex-column  px-0 py-3 d-flex col-2 border-right ">
-                <!-- これで個数を登録できる。 -->
-            <input type="number" class="mx-5 px2 w-100" name="quantity">
-            <ul class="nav nav-pills flex-column mb-auto">
-                <!-- これで登録された個数をすべて表示することができる。 -->
-                @foreach ($needs as $need)
-                <li class="nav-item text-center  mb-3 border-bottom">{{ $need->quantity }}</li>
-                @endforeach
-            </ul>
-        </div>
+            <div class="col-4 border-right p-0  ">
+                    <!-- これで個数を登録できる。 -->
+                <input type="number" class="mx-auto px4" name="quantity">
+                <ul class="nav nav-pills flex-column mb-auto ">
+                    <!-- これで登録された個数をすべて表示することができる。 -->
+                    @foreach ($needs as $need)
+                    <li class="nav-item text-center  mb-3 border-bottom">{{ $need->quantity }}</li>
+                    @endforeach
+                </ul>
+            </div>
 
-        <div class="flex-column px-0 py-3  d-flex col-4 border-right">
-            <ul class="nav nav-pills flex-column mb-auto">
-                    <!-- これで期限を登録できる。 -->
-                <input type="date" class="mx-5 px-4" name="date_of_purchase">   
-                <!-- これで登録された期限をすべて表示することができる。 -->
-                @foreach ($needs as $need)
-                <li class="nav-item text-center  mb-3 border-bottom">{{ $need->date_of_purchase }}</li>
-                @endforeach
-            </ul>
-        </div> 
-    </form> 
-@endsection    
+            <div class="col-4 border-right p-0 ">
+                <!-- これで期限を登録できる。 -->
+                <input type="date" class="mx-auto px-4" name="date_of_purchase">
+                <ul class="nav nav-pills flex-column mb-auto ">
+                    <!-- これで登録された期限をすべて表示することができる。 -->
+                    @foreach ($needs as $need)
+                    <li class="nav-item text-center  mb-3 border-bottom">{{ $need->date_of_purchase }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        </form>
+    </div> 
+    <!-- これは個数のマイナス入力が出来ないようにするための機能 -->
+    <script>
+       ///
+    </script>
+</div>
+@endsection
