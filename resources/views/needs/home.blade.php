@@ -30,7 +30,7 @@
             </a>
         </li>
         <li>
-            <a href="{{ route('update-needs-form') }}" class="nav-link active link-dark mt-2">
+            <a href="{{ route('needEdit') }}" class="nav-link active link-dark mt-2">
             <svg class="bi me-2" width="16" height="16"></svg>
             買い物リスト編集
             </a>
