@@ -51,48 +51,40 @@
     <!-- メイン画面 -->
 
     <!-- 買い物リスト登録フォーム/一覧表示 -->
-        
+    <form id="list" method="post" class="row"  action="{{ route('needs.store') }}"  >
         @csrf
         <div class="flex-column px-0 py-3 d-flex col-3 border-right  border-left">
-            <form id="list" method="post"  action="{{ route('needs.store') }}"  >
-                <input type="hidden" class="mx-5" name="user_id" value="1">
-                    <ul class="nav nav-pills flex-column mb-auto">
-                            <!-- これで名前を登録できる。 -->
-                        <input type="text" class="mx-5 px-2" name="need_item_name" value="">
-                        <!-- これで登録された名前をすべて表示することができる。 -->
-                        @foreach ($needs as $need)
-                        <li class="nav-item text-center mb-3 border-bottom">{{ $need->need_item_name }}</li>
-                        @endforeach
-                    </ul>
-            </form>       
+            <input type="hidden" class="mx-5" name="user_id" value="1">
+                <ul class="nav nav-pills flex-column mb-auto">
+                        <!-- これで名前を登録できる。 -->
+                    <input type="text" class="mx-5 px-2" name="need_item_name" value="">
+                    <!-- これで登録された名前をすべて表示することができる。 -->
+                    @foreach ($needs as $need)
+                    <li class="nav-item text-center mb-3 border-bottom">{{ $need->need_item_name }}</li>
+                    @endforeach
+                </ul>       
         </div>
 
         <div class="flex-column  px-0 py-3 d-flex col-2 border-right ">
-            <form id="list" method="post" action="{{ route('needs.store') }}"  >
-            @csrf
                 <!-- これで個数を登録できる。 -->
-                <input type="number" class="mx-5 px2" name="quantity">
-            </form>
-                <ul class="nav nav-pills flex-column mb-auto">
-                    <!-- これで登録された個数をすべて表示することができる。 -->
-                    @foreach ($needs as $need)
-                    <li class="nav-item text-center  mb-3 border-bottom">{{ $need->quantity }}</li>
-                    @endforeach
-                </ul>
+            <input type="number" class="mx-5 px2 w-100" name="quantity">
+            <ul class="nav nav-pills flex-column mb-auto">
+                <!-- これで登録された個数をすべて表示することができる。 -->
+                @foreach ($needs as $need)
+                <li class="nav-item text-center  mb-3 border-bottom">{{ $need->quantity }}</li>
+                @endforeach
+            </ul>
         </div>
 
         <div class="flex-column px-0 py-3  d-flex col-4 border-right">
-            <form id="list" method="post" action="{{ route('needs.store') }}"  >
-                <ul class="nav nav-pills flex-column mb-auto">
-                        <!-- これで期限を登録できる。 -->
-                    <input type="date" class="mx-5 px-4" name="date_of_purchase">   
-                    <!-- これで登録された期限をすべて表示することができる。 -->
-                    @foreach ($needs as $need)
-                    <li class="nav-item text-center  mb-3 border-bottom">{{ $need->date_of_purchase }}</li>
-                    @endforeach
-                </ul>
-            </form>
+            <ul class="nav nav-pills flex-column mb-auto">
+                    <!-- これで期限を登録できる。 -->
+                <input type="date" class="mx-5 px-4" name="date_of_purchase">   
+                <!-- これで登録された期限をすべて表示することができる。 -->
+                @foreach ($needs as $need)
+                <li class="nav-item text-center  mb-3 border-bottom">{{ $need->date_of_purchase }}</li>
+                @endforeach
+            </ul>
         </div> 
-      
-</div> 
+    </form> 
 @endsection    
