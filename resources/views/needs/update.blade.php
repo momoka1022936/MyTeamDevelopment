@@ -38,9 +38,9 @@
                 </a>
             </li>
             <li>
-                <a href="#" class="nav-link active link-dark mt-2">
+                <a href="{{ route('stocks') }}" class="nav-link active link-dark mt-2">
                     <svg class="bi me-2" width="16" height="16"></svg>
-                    編集内容を登録する
+                    <input form="needUpdate" class="btn btn-primary" type="submit" value="入力内容を変更する">
                 </a>
             </li>
         </ul>
@@ -50,57 +50,59 @@
             {{ __('ログアウト') }}
         </a>
     </div>
-    <!-- メイン画面 -->
-        <!-- メイン画面  -->
-<div class="flex-column px-0 d-flex col-10 border-left ml-2 row">
-    <form  id="path" class="pt-3 form-inline-alignDelete" action="/needUpdate" method="post">
-        @csrf
-        <!-- 名前の入力 -->
-        <div class="col-3 border-right p-0 ">
-        @foreach ($needs as $need)
+    <!-- メイン画面  -->
+    <div class="flex-column px-0 d-flex col-10 border-left ml-2 row">
+        <form id="needUpdate" class="pt-3 form-inline-alignDelete" action="{{ route('needUpdate') }}" method="post">
+            @csrf
+            <!-- 名前の入力 -->
+            <div class="col-3 border-right p-0 ">
+                @foreach ($needs as $need)
                 <ul class="border-bottom p-0 mx-3">
                     <input class="w-100 mb-2" type="hidden" name="id[]" value="{{ $need->id }}">
                     <input class="w-100 mb-2" type="text" name="need_item_name[]" value="{{ $need->need_item_name }}">
                 </ul>
-        @endforeach
-        </div>
-        <!-- 個数の入力 -->
-        <div class="minus col-3  border-right  p-0">
-        @foreach ($needs as $need)
-            <ul class="border-bottom p-0 mx-3">
-                <input class="w-100 mb-2 minus" type="number" name="quantity[]" value="{{ $need->quantity }}">
-            </ul>
-        @endforeach
-        </div>
-        <!-- 期限の入力 -->
-        <div class="col-5 mb-3 border-right">
-        @foreach ($needs as $need)
-            <ul class="border-bottom p-0 mx-2">
-                <input class="w-100 mb-2" type="date"  name="date_of_purchase[]" value="{{ $need->date_of_purchase }}">
-            </ul>
-        @endforeach
-        </div>
-        <div class="col-1 mb-2 border-right">
-            @foreach ($needs as $need)
+                @endforeach
+            </div>
+            <!-- 個数の入力 -->
+            <div class="minus col-3  border-right  p-0">
+                @foreach ($needs as $need)
+                <ul class="border-bottom p-0 mx-3">
+                    <input class="w-100 mb-2 minus" type="number" name="quantity[]" value="{{ $need->quantity }}">
+                </ul>
+                @endforeach
+            </div>
+            <!-- 期限の入力 -->
+            <div class="col-5 mb-3 border-right">
+                @foreach ($needs as $need)
+                <ul class="border-bottom p-0 mx-2">
+                    <input class="w-100 mb-2" type="date" name="date_of_purchase[]"
+                        value="{{ $need->date_of_purchase }}">
+                </ul>
+                @endforeach
+            </div>
+        </form>
+        <form action="" class="pt-3 form-inline-alignDelete" method="post">
+            <div class="col-1 mb-2 border-right">
+                @foreach ($needs as $need)
                 <ul class="border-bottom p-0 mx-2">
                     <input class="w-100 mb-3 mt-2" id="delete" type="checkbox" name="delete[]" value="{{ $need->id }}">
                 </ul>
-            @endforeach
-        </div>
-    </form>
-</div>
-<!-- これは個数のマイナス入力が出来ないようにするための機能 -->
-<script>
-    window.addEventListener('DOMContentLoaded', ()=>{
-    document.querySelectorAll('.minus').forEach(x=>{
-        x.addEventListener('input',()=>{
-        var reg=/[^0-9]/g;
-        var val=x.value;
-        if(reg.test(val)){
-            x.value=val.replace(reg,'');
-        }
+                @endforeach
+            </div>
+        </form>
+    </div>
+    <!-- これは個数のマイナス入力が出来ないようにするための機能 -->
+    <script>
+    window.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('.minus').forEach(x => {
+            x.addEventListener('input', () => {
+                var reg = /[^0-9]/g;
+                var val = x.value;
+                if (reg.test(val)) {
+                    x.value = val.replace(reg, '');
+                }
+            });
         });
     });
-    });
-</script>
-@endsection
+    </script>
+    @endsection

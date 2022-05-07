@@ -32,4 +32,26 @@ class NeedController extends Controller
     /**
      * 買い物リスト編集
      */
+    public function needUpdate(Request $request)
+    {
+        // 0番目から順番に配列の中身を見ていく
+        $i = 0;
+        dd($request->id, $request->need_item_name, $request->quantity, $request->date_of_purchase);
+        foreach($request->id as $id){
+
+            // $idでレコードを1件取得
+            $need = Need::find($id);
+
+            // 取得したレコードの各カラムの値を、リクエストで取得した値に書き換える
+            $need->need_item_name = $request->need_item_name[$i];
+            $need->quantity = $request->quantity[$i];
+            $need->date_of_purchase = $request->date_of_purchase[$i];
+
+            // 書き換えた値を保存
+            $need->save();
+            // 次の順番の配列へ
+            $i++;
+        }
+        return redirect('/home');
+    }
 }
