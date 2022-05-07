@@ -36,7 +36,7 @@ class NeedController extends Controller
     {
         // 0番目から順番に配列の中身を見ていく
         $i = 0;
-        dd($request->id, $request->need_item_name, $request->quantity, $request->date_of_purchase);
+        
         foreach($request->id as $id){
 
             // $idでレコードを1件取得
