@@ -23,7 +23,13 @@ class stocksControllers extends Controller
     {
         $stocks = DB::select('select * from stocks');
         $data = ['stocks' => $stocks];
-        return view('stocks.stocks', $data);
+        
+        // ここで一週間後の日付を取得
+        $week1 = date("Y-m-d",strtotime("+1 week"));
+        // ここで、stock_expirationのカラムのデータをすべて取得する。
+        $stock_expiration = array_column($stocks, 'stock_expiration');
+
+        return view('stocks.stocks', compact('week1','stock_expiration') ,$data);
     }
 
     //登録画面の表示
@@ -59,7 +65,7 @@ class stocksControllers extends Controller
     }
 
     public function stockUpdate(Request $request){
-        //作成中
+        //編集機能
 
         $stocks = $request->only(['id', 'stock_item_name','quantity','stock_expiration']);
         $i = 0;
@@ -89,5 +95,5 @@ class stocksControllers extends Controller
     return redirect('/stocks');
     }
 
-}
 
+}

@@ -39,4 +39,8 @@ class User extends Authenticatable
     {
         return $this->hasMany(Need::class);
     }
+
+    public function stocks(){
+        return $this->hasMany('App\Stock');
+    }
 }
