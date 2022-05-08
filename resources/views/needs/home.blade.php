@@ -18,7 +18,6 @@
 </header>
 
 <div class="container-fluid m-0 row">
-
     <!-- サイドメニュー -->
     <div class="d-flex flex-column flex-shrink-0  p-3 col-2 " style=" height:600px;">
         <hr>
@@ -49,6 +48,7 @@
             {{ __('ログアウト') }}
         </a>
     </div>
+    
     <!-- メイン画面 -->
     <div class="flex-column px-0 py-3 d-flex col-3 border-right  border-left">
         <ul class="nav nav-pills flex-column mb-auto">

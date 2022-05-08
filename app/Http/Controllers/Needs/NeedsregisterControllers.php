@@ -7,28 +7,21 @@ use Illuminate\Http\Request;
 use App\Models;
 use \routes\web;
 use App\Models\Needsregister; 
+use Illuminate\Support\Facades\DB;
+use Laravel\Fortify\Contracts\LogoutResponse;
+
+
 class NeedsregisterControllers extends Controller
 {
     public function needsregister()
     {
-        return view('needs.needsregister');
+        /*$needsregisterはデータベースのneedsから全てを取得,上から順に新しく登録した物が表示*/ 
+        $needsregister = DB::table('needs')->orderBy('created_at', 'desc')->get();
+        /*needs.needsregisterに渡す、関数$needsregisterが使えるようにする*/
+        return view('needs.needsregister',['needs'=>$needsregister]);
     }
 
 
-//登録画面の作成をしたい。。。
- /**
-   * 登録フォーム
-   *
-   * @return \Illuminate\View\View
-   */
-  public function create()
-  {
-  // まだ登録されているuserはないので、空っぽのUserインスタンスをViewに渡す
-      
-      return view('needs/needsregister');
-  }
-
-  //登録画面からリストに追加。。
  /**
    * 登録フォーム
    *
@@ -43,16 +36,39 @@ class NeedsregisterControllers extends Controller
       return redirect('/needs/home');
   }
 
-  /**
+   
+
+
+    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    /**request*/
     public function store(Request $request){
-        $needs= new Needsregister();
-        $needs->fill($request->all())->save();
+    /**５３Needsregisterの空データをつくる。 */
+    $needs= new Needsregister();
+    /**request allで全部のデータ取得,$fillable（Needsregister.php）だけ取得そして保存 */
+    $needs->fill($request->all())->save();
+
+    return redirect('/needs/needsregister');
     }
 
 
-}
+
+
+
+    public function register()
+    {
+        $this->app->instance(LogoutResponse::class, new class implements LogoutResponse {
+            public function toResponse($request)
+            {
+                return redirect('/login');
+            }
+        });
+    }
+
+}    
+
+
