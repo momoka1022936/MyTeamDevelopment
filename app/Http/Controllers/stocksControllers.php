@@ -22,18 +22,14 @@ class stocksControllers extends Controller
     public function stocks()
     {
         $stocks = DB::select('select * from stocks');
-        dd($stocks);
         $data = ['stocks' => $stocks];
+        
+        // ここで一週間後の日付を取得
+        $week1 = date("Y-m-d",strtotime("+1 week"));
+        // ここで、stock_expirationのカラムのデータをすべて取得する。
+        $stock_expiration = array_column($stocks, 'stock_expiration');
 
-        $stocksWeek=Stock::all();
-        foreach($stocksWeek as $stock){
-            $stockDay=Carbon::parse($stock->stock_expiration);
-        }
-        $sevendays = Carbon::today()->addDay(7);
-        $stocksWeeks = Stock::whereDate('stock_expiration', '<=', $sevendays)->get();
-        $date = ['stocks' => $stocksWeeks];
-        // return view('stock.stocks', compact('stocksWeek'), $date);
-        return view('stocks.stocks', compact('stocksWeeks') ,$data);
+        return view('stocks.stocks', compact('week1','stock_expiration') ,$data);
     }
 
     //登録画面の表示
@@ -100,34 +96,4 @@ class stocksControllers extends Controller
     }
 
 
-    public function stock_expirationAlert(Request $request) {
-
-
-        //これで$week-$todayが$week => $todayになれば赤色で表示できるようにする。
-        // $stock_expiration=Stock::whereDate('stock_expiration', $week-1)->get();
-        //  データベースから、今日から遡って7日以内に作成されたデータをを取り出す→じゅんことたけし
-        // $stocksWeek=Stock::all();
-        // foreach($stocksWeek as $stock){
-        //     $stockDay=Carbon::parse($stock->stock_expiration);
-        // }
-        // $sevendays=Carbon::parse()->subDay(7);
-        // $dangos=Stock::whereDate('stock_expiration', '>=', $sevendays)->get();
-        // ddd($dangos);
-        // $date = ['stocks' => $stocksWeek];
-        // return view('stock.stocks', compact('stocksWeek'));
-        // $stocks = \App\Models\Stock::dates
-        // $stock_expirationで$datesのデータを使用できる
-
-        // $stocksWeek=Stock::all();
-        // $stocksWeee = DB::select('select * from stocks');
-        $stocksWeek = collect('stock_expiration');
-
-        foreach($stocksWeek as $stock){
-            $stockDay=Carbon::parse($stock->stock_expiration);
-        }
-        $sevendays = Carbon::today()->addDay(7);
-        $stocksWeek = Stock::whereDate('stock_expiration', '<=', $sevendays)->get();
-        $date = ['stocks' => $stocksWeek];
-        dd($stocksWeek);
-    }
 }

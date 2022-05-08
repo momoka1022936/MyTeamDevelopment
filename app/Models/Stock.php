@@ -23,6 +23,6 @@ class Stock extends Model
         return $this->belongsTo('App\User');
       }
       protected $dates = [
-        'stock_expiration' => 'date',
+        'stock_expiration',
     ];
 }

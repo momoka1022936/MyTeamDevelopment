@@ -39,5 +39,3 @@ Route::get('/stockEdit',[App\Http\Controllers\stocksControllers::class,'stockEdi
 Route::post('/stockUpdate',[App\Http\Controllers\stocksControllers::class, 'stockUpdate']);
 
 Route::post('/stockDelete',[App\Http\Controllers\stocksControllers::class, 'stockDelete']);
-
-Route::get('/stock_expirationAlert',[App\Http\Controllers\stocksControllers::class, 'stock_expirationAlert']);
