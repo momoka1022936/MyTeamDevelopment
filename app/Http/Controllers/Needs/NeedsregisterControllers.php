@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models;
 use \routes\web;
-use App\Models\Needsregister; 
+use App\Models\Need; 
 use Illuminate\Support\Facades\DB;
 use Laravel\Fortify\Contracts\LogoutResponse;
 
@@ -48,7 +48,7 @@ class NeedsregisterControllers extends Controller
     /**request*/
     public function store(Request $request){
     /**５３Needsregisterの空データをつくる。 */
-    $needs= new Needsregister();
+    $needs= new Need();
     /**request allで全部のデータ取得,$fillable（Needsregister.php）だけ取得そして保存 */
     $needs->fill($request->all())->save();
 
@@ -68,6 +68,32 @@ class NeedsregisterControllers extends Controller
             }
         });
     }
+
+
+
+   
+    ////未ログインの際はログイン画面へredirectされる
+    public function show_by_user($id)
+    {
+        $user = Auth::user();
+        $id = Auth::id();
+
+        $user = User::find($id); 
+        $records = Record::where('user_id',$user->id)->sortable()->get(); 
+
+
+        if($user->id == $id){
+
+        return view('record.showbyuser', [
+            'user_name' => $user->name, 
+            'records' => $records, 
+        ]);
+        }else{
+            return redirect('/login');
+        }
+
+    }
+
 
 }    
 
