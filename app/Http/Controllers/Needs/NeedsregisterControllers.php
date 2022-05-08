@@ -8,14 +8,15 @@ use App\Models;
 use \routes\web;
 use App\Models\Needsregister; 
 use Illuminate\Support\Facades\DB;
+use Laravel\Fortify\Contracts\LogoutResponse;
 
 
 class NeedsregisterControllers extends Controller
 {
     public function needsregister()
     {
-        /*$needsregisterはデータベースのneedsから全てを取得する*/ 
-        $needsregister = DB::table('needs')->get();
+        /*$needsregisterはデータベースのneedsから全てを取得,上から順に新しく登録した物が表示*/ 
+        $needsregister = DB::table('needs')->orderBy('created_at', 'desc')->get();
         /*needs.needsregisterに渡す、関数$needsregisterが使えるようにする*/
         return view('needs.needsregister',['needs'=>$needsregister]);
     }
@@ -38,21 +39,36 @@ class NeedsregisterControllers extends Controller
    
 
 
-/**
- * Store a newly created resource in storage.
- *
- * @param  \Illuminate\Http\Request  $request
- * @return \Illuminate\Http\Response
- */
-/**request*/
-public function store(Request $request){
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    /**request*/
+    public function store(Request $request){
     /**５３Needsregisterの空データをつくる。 */
     $needs= new Needsregister();
     /**request allで全部のデータ取得,$fillable（Needsregister.php）だけ取得そして保存 */
     $needs->fill($request->all())->save();
 
     return redirect('/needs/needsregister');
-}
+    }
 
 
-}
+
+
+
+    public function register()
+    {
+        $this->app->instance(LogoutResponse::class, new class implements LogoutResponse {
+            public function toResponse($request)
+            {
+                return redirect('/login');
+            }
+        });
+    }
+
+}    
+
+

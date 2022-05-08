@@ -20,7 +20,7 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-
+Route::get('/logout', [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('/logout');
 Route::get('/home', [App\Http\Controllers\Needs\NeedController::class, 'index'])->name('/home');
 Route::get('/update-needs-form', [App\Http\Controllers\Needs\NeedController::class, 'updateForm'])->name('update-needs-form');
 
@@ -34,3 +34,4 @@ Route::post('/stockCreate',[App\Http\Controllers\stocksControllers::class,'stock
 Route::get('/needs/needsregister', [App\Http\Controllers\Needs\NeedsregisterControllers::class, 'needsregister']);
 //needsregister.blade.phpで'/needs/store'がpostされるとNeedsregisterControllersに行く、そして'needsregister'（登録画面）が表示される(登録される)
 Route::post('/needs/store', [App\Http\Controllers\Needs\NeedsregisterControllers::class, 'store' ])->name('needs.store');
+
