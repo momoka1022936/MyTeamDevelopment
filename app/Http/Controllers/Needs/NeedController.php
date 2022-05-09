@@ -54,4 +54,18 @@ class NeedController extends Controller
         }
         return redirect('/home');
     }
+
+    /**
+     * 買い物リスト削除
+     */
+    public function needDelete(Request $request)
+    {
+        foreach ($request->id as $id) {
+            // checkboxからidを取得してレコードを探す
+            $need = Need::find($id);
+            // 削除
+            $need->delete();
+        }
+        return redirect('/home');
+    }
 }

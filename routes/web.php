@@ -24,6 +24,7 @@ Route::get('/logout', [App\Http\Controllers\Auth\LoginController::class, 'logout
 Route::get('/home', [App\Http\Controllers\Needs\NeedController::class, 'index'])->name('/home');
 Route::get('/needEdit', [App\Http\Controllers\Needs\NeedController::class, 'needEdit'])->name('needEdit');
 Route::post('/needUpdate', [App\Http\Controllers\Needs\NeedController::class, 'needUpdate'])->name('needUpdate');
+Route::delete('/needDelete', [App\Http\Controllers\Needs\NeedController::class, 'needDelete'])->name('needDelete');
 
 Route::get('/stocks', [App\Http\Controllers\stocksControllers::class, 'stocks'])->name('stocks');
 
