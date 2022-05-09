@@ -18,7 +18,7 @@ class ChangeStocksTable extends Migration
         DB::statement('UPDATE `stocks` SET `quantity` = 0 WHERE `quantity` IS NULL');
 
         Schema::table('stocks', function (Blueprint $table) {
-            // noteカラムにNULLを許容
+            // 必要箇所のカラムにNULLを許容
             $table->text('user_id')->nullable(false)->change();
             $table->text('stock_item_name')->nullable(false)->change();
             $table->text('quantity')->nullable(false)->change();
