@@ -26,6 +26,7 @@ Route::get('/needEdit', [App\Http\Controllers\Needs\NeedController::class, 'need
 Route::post('/needUpdate', [App\Http\Controllers\Needs\NeedController::class, 'needUpdate'])->name('needUpdate');
 Route::delete('/needDelete', [App\Http\Controllers\Needs\NeedController::class, 'needDelete'])->name('needDelete');
 
+
 Route::get('/stocks', [App\Http\Controllers\stocksControllers::class, 'stocks'])->name('stocks');
 
 Route::get('/stocksRegister', [App\Http\Controllers\stocksControllers::class, 'stocksRegister'])->name('stocksRegister');
@@ -37,6 +38,6 @@ Route::post('/stockDelete',[App\Http\Controllers\stocksControllers::class, 'stoc
 
 /*買い物リスト登録画面*/
 
-Route::get('/needs/needsregister', [App\Http\Controllers\Needs\NeedsregisterControllers::class, 'needsregister']);
+Route::get('/needs/needsregister', [App\Http\Controllers\Needs\NeedsregisterControllers::class, 'needsregister'])->middleware('auth');
 //needsregister.blade.phpで'/needs/store'がpostされるとNeedsregisterControllersに行く、そして'needsregister'（登録画面）が表示される(登録される)
 Route::post('/needs/store', [App\Http\Controllers\Needs\NeedsregisterControllers::class, 'store' ])->name('needs.store');
