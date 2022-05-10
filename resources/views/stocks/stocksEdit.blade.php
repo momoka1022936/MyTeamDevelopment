@@ -83,7 +83,7 @@
         <div class="minus  col-3 p-0 border-right">
         @foreach ($stocks as $stock)
             <ul class="border-bottom p-0  mx-2">
-                <input class="w-100 mb-2 minus" type="number" name="quantity[]" value="{{$stock->quantity}}" pattern="^[0-9]+$">
+                <input class="w-100 mb-2 minus" type="number" name="alert_number[]" value="{{$stock->alert_number}}" pattern="^[0-9]+$">
             </ul>
         @endforeach
         </div>

@@ -63,7 +63,11 @@
         <ul class="nav nav-pills flex-column mb-auto">
             <!-- これで登録された個数をすべて表示することができる。 -->
             @foreach ($stocks as $stock)
-                <li class="nav-item text-center  mb-3 border-bottom">{{ $stock->quantity }}</li>
+                @if($stock->quantity <= $stock->alert_number)
+                    <li class="nav-item text-center  mb-3 border-bottom text-red">{{ $stock->quantity }}</li>
+                @else
+                    <li class="nav-item text-center  mb-3 border-bottom">{{ $stock->quantity }}</li>
+                @endif
             @endforeach
         </ul>
     </div>
@@ -72,7 +76,7 @@
             <!-- これで登録された期限をすべて表示することができる。 -->
             @foreach ($stock_expiration as $expiration)
             <!-- このemptyでstock_expirationがnullの場合期限が設定されていないと出る。 -->
-                @if (empty($week1))
+                @if (empty($expiration))
                     <li class="nav-item text-center  mb-3 border-bottom">期限が設定されていません</li>
                 @elseif ($week1 >= $expiration)
                     <li class="nav-item text-center  mb-3 border-bottom text-red">{{ $expiration }}</li>

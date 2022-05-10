@@ -17,6 +17,7 @@ class Stock extends Model
         'user_id',
         'stock_item_name',
         'quantity',
+        'alert_number',
         'stock_expiration',
     ];
     public function user(){

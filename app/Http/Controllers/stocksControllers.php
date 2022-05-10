@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redis;
 use Carbon\Carbon;
 
+
 class stocksControllers extends Controller
 {
     //
@@ -29,7 +30,10 @@ class stocksControllers extends Controller
         // ここで、stock_expirationのカラムのデータをすべて取得する。
         $stock_expiration = array_column($stocks, 'stock_expiration');
 
-        return view('stocks.stocks', compact('week1','stock_expiration') ,$data);
+        $quantity  = array_column($stocks, 'quantity');
+        $alert_number  = array_column($stocks, 'alert_number');
+
+        return view('stocks.stocks', compact('week1','stock_expiration','alert_number', 'quantity') ,$data);
     }
 
     //登録画面の表示
@@ -41,21 +45,27 @@ class stocksControllers extends Controller
     // stocksのテーブルに登録するための機能
     public function stockCreate(Request $request){
 
-        // ここでフォームの内容を取得している
-        $inputs = $request->input('user_id','stock_item_name','quantity','stock_expiration');
-        // ここで、tokenを削除
-        unset($inputs['_token']);
 
-        // ここで配列登録している
-        foreach ($inputs as $key => $value){
-            $stock = new stock();
-            $stock->user_id = $request->input('user_id')[$key];
-            $stock->stock_item_name = $request->input('stock_item_name')[$key];
-            $stock->quantity = $request->input('quantity')[$key];
-            $stock->stock_expiration = $request->input('stock_expiration')[$key];
-            $stock->save();
-        }
-        return redirect('/stocks');
+
+        
+        // ここでフォームの内容を取得している
+        // ここで、tokenを削除
+        $i = 0;
+
+        for($request->stock_item_name[$i]; $i < 12; $i++){
+            if(is_null($request->stock_item_name[$i])){
+                return redirect('/stocks');
+            }else{
+                unset($request['_token']);
+                $stock = new stock();
+                $stock->user_id = $stock->user_id = auth()->id();
+                $stock->stock_item_name = $request->stock_item_name[$i];
+                $stock->quantity = $request->quantity[$i];
+                $stock->alert_number = $request->alert_number[$i];
+                $stock->stock_expiration = $request->stock_expiration[$i];
+                $stock->save();
+            }
+        }            
     }
 
     public function stockEdit(){
@@ -73,6 +83,7 @@ class stocksControllers extends Controller
             $stock = Stock::find($id);
             $stock->stock_item_name = $request->stock_item_name[$i];
             $stock->quantity = $request->quantity[$i];
+            $stock->alert_number = $request->alert_number[$i];
             $stock->stock_expiration = $request->stock_expiration[$i];
             $stock->save();
             $i++;
