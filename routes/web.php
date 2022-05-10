@@ -33,7 +33,7 @@ Route::get('/stocksRegister', [App\Http\Controllers\stocksControllers::class, 's
 Route::post('/stockCreate',[App\Http\Controllers\stocksControllers::class,'stockCreate']);
 Route::get('/stockEdit',[App\Http\Controllers\stocksControllers::class,'stockEdit'])->name('stocksEdit');
 Route::post('/stockUpdate',[App\Http\Controllers\stocksControllers::class, 'stockUpdate']);
-Route::post('/stockDelete',[App\Http\Controllers\stocksControllers::class, 'stockDelete']);
+Route::delete('/stockDelete',[App\Http\Controllers\stocksControllers::class, 'stockDelete'])->name('stockDelete');
 
 
 /*買い物リスト登録画面*/
