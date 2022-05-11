@@ -23,8 +23,9 @@ Auth::routes();
 Route::get('/logout', [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('/logout');
 Route::get('/home', [App\Http\Controllers\Needs\NeedController::class, 'index'])->name('/home');
 Route::get('/needEdit', [App\Http\Controllers\Needs\NeedController::class, 'needEdit'])->name('needEdit');
-Route::post('/needUpdate', 
-[App\Http\Controllers\Needs\NeedController::class, 'needUpdate'])->name('needUpdate');
+Route::post('/needUpdate', [App\Http\Controllers\Needs\NeedController::class, 'needUpdate'])->name('needUpdate');
+Route::delete('/needDelete', [App\Http\Controllers\Needs\NeedController::class, 'needDelete'])->name('needDelete');
+
 
 Route::get('/stocks', [App\Http\Controllers\stocksControllers::class, 'stocks'])->name('stocks');
 
@@ -32,7 +33,7 @@ Route::get('/stocksRegister', [App\Http\Controllers\stocksControllers::class, 's
 Route::post('/stockCreate',[App\Http\Controllers\stocksControllers::class,'stockCreate']);
 Route::get('/stockEdit',[App\Http\Controllers\stocksControllers::class,'stockEdit'])->name('stocksEdit');
 Route::post('/stockUpdate',[App\Http\Controllers\stocksControllers::class, 'stockUpdate']);
-Route::post('/stockDelete',[App\Http\Controllers\stocksControllers::class, 'stockDelete']);
+Route::delete('/stockDelete',[App\Http\Controllers\stocksControllers::class, 'stockDelete'])->name('stockDelete');
 
 
 /*買い物リスト登録画面*/

@@ -92,19 +92,16 @@ class stocksControllers extends Controller
         return redirect('/stocks');
     }
 
-    public function stockDelete(Request $request)
-    {
-      //チェックボックスでチェックしたidを取得
-      $delete = array($request->input('delete'));
+    public function stockDelete(Request $request){
+    // 削除機能
 
-      //チェックしたidで1件ずつ削除する
-      for($i=0; $i<count($delete); $i++){
-
-          $this->delete($delete[$i]);
-        }
-
-    return redirect('/stocks');
+    foreach ($request->id as $id) {
+        // checkboxからidを取得してレコードを探す
+        $stock = Stock::find($id);
+        // 削除
+        $stock->delete();
     }
 
-
+    return redirect('/stocks');
+    }  
 }
