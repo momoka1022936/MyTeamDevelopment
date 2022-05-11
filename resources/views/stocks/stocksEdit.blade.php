@@ -70,11 +70,34 @@
                     <input class="w-100 mb-2" type="hidden" name="id[]" value="{{$stock->id}}">
                     <input class="w-100 mb-2" type="text" name="stock_item_name[]" value="{{$stock->stock_item_name}}">
                 </ul>
-                @endforeach
-            </div>
-            <!-- 個数の入力 -->
-            <div class="minus col-2  border-right  p-0">
-                @foreach ($stocks as $stock)
+        @endforeach
+        </div>
+        <!-- 個数の入力 -->
+        <div class="minus col-2  border-right  p-0">
+        @foreach ($stocks as $stock)
+            <ul class="border-bottom p-0 mx-2">
+                <input class="w-100 mb-2 minus" type="number" name="quantity[]" value="{{$stock->quantity}}" pattern="^[0-9]+$">
+            </ul>
+        @endforeach
+        </div>
+        <!-- アラートまでの個数の入力 -->
+        <div class="minus  col-3 p-0 border-right">
+        @foreach ($stocks as $stock)
+            <ul class="border-bottom p-0  mx-2">
+                <input class="w-100 mb-2 minus" type="number" name="alert_number[]" value="{{$stock->alert_number}}" pattern="^[0-9]+$">
+            </ul>
+        @endforeach
+        </div>
+        <!-- 期限の入力 -->
+        <div class="col-3 mb-2 border-right">
+        @foreach ($stocks as $stock)
+            <ul class="border-bottom p-0 mx-2">
+                <input class="w-100 mb-2" type="date"  name="stock_expiration[]" value="{{ $stock->stock_expiration }}">
+            </ul>
+        @endforeach
+        </div>
+        <div class="col-1 mb-2 border-right">
+            @foreach ($stocks as $stock)
                 <ul class="border-bottom p-0 mx-2">
                     <input class="w-100 mb-2 minus" type="number" name="quantity[]" value="{{$stock->quantity}}"
                         pattern="^[0-9]+$">

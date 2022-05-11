@@ -92,7 +92,7 @@
             <div class="minus  col-3 m-0 border-right p-0">
             @for($i = 0; $i < 12; $i++)
                 <ul class="border-bottom p-0  mx-2">
-                    <input class="w-100 mb-2 minus" type="number" name="quantity[]" pattern="^[0-9]+$">
+                    <input class="w-100 mb-2 minus" type="number" name="alert_number[]" pattern="^[0-9]+$">
                 </ul>
             @endfor
             </div>
@@ -104,7 +104,7 @@
                 </ul>
             @endfor
             </div>
-        
+
         </form>
     </div>
 <!-- これは個数のマイナス入力が出来ないようにするための機能 -->
