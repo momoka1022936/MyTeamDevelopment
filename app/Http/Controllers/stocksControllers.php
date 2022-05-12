@@ -45,7 +45,34 @@ class stocksControllers extends Controller
     // stocksのテーブルに登録するための機能
     public function stockCreate(Request $request){
 
-
+        $request->validate([
+            'stock_item_name.0' => 'required|max:100|required_with:quantity.0',
+            'stock_item_name.1'  => 'max:100|nullable|required_with:quantity.1',
+            'stock_item_name.2'  => 'max:100|nullable|required_with:quantity.2',
+            'stock_item_name.3'  => 'max:100|nullable|required_with:quantity.3',
+            'stock_item_name.4'  => 'max:100|nullable|required_with:quantity.4',
+            'stock_item_name.5'  => 'max:100|nullable|required_with:quantity.5',
+            'stock_item_name.6'  => 'max:100|nullable|required_with:quantity.6',
+            'stock_item_name.7'  => 'max:100|nullable|required_with:quantity.7',
+            'stock_item_name.8'  => 'max:100|nullable|required_with:quantity.8',
+            'stock_item_name.9'  => 'max:100|nullable|required_with:quantity.9',
+            'stock_item_name.10'  => 'max:100|nullable|required_with:quantity.10',
+            'stock_item_name.11'  => 'max:100|nullable|required_with:quantity.11',
+            'quantity.0'  => 'required|required_with:stock_item_name.0|max:6',
+            'quantity.1'  => 'nullable|required_with:stock_item_name.1|max:6',
+            'quantity.2'  => 'nullable|required_with:stock_item_name.2|max:6',
+            'quantity.3'  => 'nullable|required_with:stock_item_name.3|max:6',
+            'quantity.4'  => 'nullable|required_with:stock_item_name.4|max:6',
+            'quantity.5'  => 'nullable|required_with:stock_item_name.5|max:6',
+            'quantity.6'  => 'nullable|required_with:stock_item_name.6|max:6',
+            'quantity.7'  => 'nullable|required_with:stock_item_name.7|max:6',
+            'quantity.8'  => 'nullable|required_with:stock_item_name.8|max:6',
+            'quantity.9'  => 'nullable|required_with:stock_item_name.9|max:6',
+            'quantity.10'  => 'nullable|required_with:stock_item_name.10|max:6',
+            'quantity.11'  => 'nullable|required_with:stock_item_name.11|max:6',
+            'alert_number.*' => 'nullable|max:6',
+            'stock_expiration.*' => 'date|nullable'
+        ]);
 
         
         // ここでフォームの内容を取得している
