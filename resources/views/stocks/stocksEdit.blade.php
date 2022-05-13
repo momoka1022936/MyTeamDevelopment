@@ -60,7 +60,7 @@
         </a>
     </div>
     <!-- メイン画面  -->
-    <div class="flex-column px-0 d-flex col-10 border-left ml-2 row">
+    <div class="px-0 d-flex col-10 border-left ml-2 row">
         <form id="stockUpdate" class="col-11 pt-3 form-inline-alignDelete" action="/stockUpdate" method="post">
             @csrf
             <!-- 名前の入力 -->
@@ -73,7 +73,7 @@
         @endforeach
         </div>
         <!-- 個数の入力 -->
-        <div class="minus col-2  border-right  p-0">
+        <div class="minus col-3  border-right  p-0">
         @foreach ($stocks as $stock)
             <ul class="border-bottom p-0 mx-2">
                 <input class="w-100 mb-2 minus" type="number" name="quantity[]" value="{{$stock->quantity}}" pattern="^[0-9]+$">
@@ -96,32 +96,7 @@
             </ul>
         @endforeach
         </div>
-        <div class="col-1 mb-2 border-right">
-            @foreach ($stocks as $stock)
-                <ul class="border-bottom p-0 mx-2">
-                    <input class="w-100 mb-2 minus" type="number" name="quantity[]" value="{{$stock->quantity}}"
-                        pattern="^[0-9]+$">
-                </ul>
-                @endforeach
-            </div>
-            <!-- アラートまでの個数の入力 -->
-            <div class="minus col-3 border-right p-0">
-                @foreach ($stocks as $stock)
-                <ul class="border-bottom p-0  mx-2">
-                    <input class="w-100 mb-2 minus" type="number" name="quantity[]" value="{{$stock->quantity}}"
-                        pattern="^[0-9]+$">
-                </ul>
-                @endforeach
-            </div>
-            <!-- 期限の入力 -->
-            <div class="col-4 mb-2 border-right">
-                @foreach ($stocks as $stock)
-                <ul class="border-bottom p-0 mx-2">
-                    <input class="w-100 mb-2" type="date" name="stock_expiration[]"
-                        value="{{ $stock->stock_expiration }}">
-                </ul>
-                @endforeach
-            </div>
+
         </form>
         <!-- チェックボックス -->
         <form id="stockDelete" action="{{ route('stockDelete') }}"
