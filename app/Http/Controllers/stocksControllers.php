@@ -22,15 +22,16 @@ class stocksControllers extends Controller
     //selectは取得するカラムを指定することができる。この場合はすべて取得している。
     public function stocks()
     {
+
         $stocks = DB::select('select * from stocks');
         $data = ['stocks' => $stocks];
-        
         // ここで一週間後の日付を取得
         $week1 = date("Y-m-d",strtotime("+1 week"));
         // ここで、stock_expirationのカラムのデータをすべて取得する。
         $stock_expiration = array_column($stocks, 'stock_expiration');
-
+        // ここで、quantityのカラムのデータをすべて取得する。
         $quantity  = array_column($stocks, 'quantity');
+        // ここで、alert_numberのカラムのデータをすべて取得する。
         $alert_number  = array_column($stocks, 'alert_number');
 
         return view('stocks.stocks', compact('week1','stock_expiration','alert_number', 'quantity') ,$data);
@@ -70,8 +71,19 @@ class stocksControllers extends Controller
             'quantity.9'  => 'nullable|required_with:stock_item_name.9|max:6',
             'quantity.10'  => 'nullable|required_with:stock_item_name.10|max:6',
             'quantity.11'  => 'nullable|required_with:stock_item_name.11|max:6',
+            'stock_expiration.0' => 'required|date',
+            'stock_expiration.1' => 'date|nullable',
+            'stock_expiration.2' => 'date|nullable',
+            'stock_expiration.3' => 'date|nullable',
+            'stock_expiration.4' => 'date|nullable',
+            'stock_expiration.5' => 'date|nullable',
+            'stock_expiration.6' => 'date|nullable',
+            'stock_expiration.7' => 'date|nullable',
+            'stock_expiration.8' => 'date|nullable',
+            'stock_expiration.9' => 'date|nullable',
+            'stock_expiration.10' => 'date|nullable',
+            'stock_expiration.11' => 'date|nullable',
             'alert_number.*' => 'nullable|max:6',
-            'stock_expiration.*' => 'date|nullable'
         ]);
 
         
@@ -91,6 +103,9 @@ class stocksControllers extends Controller
                 $stock->alert_number = $request->alert_number[$i];
                 $stock->stock_expiration = $request->stock_expiration[$i];
                 $stock->save();
+                if($i == 11){
+                    return redirect('/stocks');
+                }
             }
         }            
     }
@@ -105,6 +120,7 @@ class stocksControllers extends Controller
         //編集機能
 
         $stocks = $request->only(['id', 'stock_item_name','quantity','stock_expiration']);
+        
         $i = 0;
         foreach($request->id as $id){
             $stock = Stock::find($id);
@@ -130,5 +146,6 @@ class stocksControllers extends Controller
     }
 
     return redirect('/stocks');
+    
     }  
 }
