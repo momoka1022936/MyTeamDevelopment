@@ -162,7 +162,20 @@ return [
         'quantity.10' => '在庫',
         'quantity.11' => '在庫',
         'alert_number.*' => 'アラートまでの個数',
-        'stock_expiration.*' =>'入力値',
+        'stock_expiration.0' =>'期限',
+        'stock_expiration.1' =>'期限',
+        'stock_expiration.2' =>'期限',
+        'stock_expiration.3' =>'期限',
+        'stock_expiration.4' =>'期限',
+        'stock_expiration.5' =>'期限',
+        'stock_expiration.6' =>'期限',
+        'stock_expiration.7' =>'期限',
+        'stock_expiration.8' =>'期限',
+        'stock_expiration.9' =>'期限',
+        'stock_expiration.10' =>'期限',
+        'stock_expiration.11' =>'期限',
+
+        
     ]
 
 ];
