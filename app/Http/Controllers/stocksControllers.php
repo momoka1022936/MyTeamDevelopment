@@ -119,7 +119,7 @@ class stocksControllers extends Controller
     public function stockUpdate(Request $request){
         //編集機能
 
-        $stocks = $request->only(['id', 'stock_item_name','quantity','stock_expiration']);
+        $stocks = $request->only(['id', 'stock_item_name','quantity','stock_expiration','alert_number']);
         
         $i = 0;
         foreach($request->id as $id){
