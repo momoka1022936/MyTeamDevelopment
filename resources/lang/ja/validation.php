@@ -107,7 +107,7 @@ return [
     'prohibits'            => ':attribute フィールドは、:other が存在することを禁止します。',
     'regex'                => ':attributeには、有効な正規表現を指定してください。',
     'required'             => ':attributeは、必ず指定してください。',
-    'required_array_keys'  => ':attributeフィールドには、：valuesのエントリを含める必要があります。',
+    'required_array_keys'  => ':attributeフィールドには、:valuesのエントリを含める必要があります。',
     'required_if'          => ':otherが:valueの場合、:attributeを指定してください。',
     'required_unless'      => ':otherが:values以外の場合、:attributeを指定してください。',
     'required_with'        => ':valuesが指定されている場合、:attributeも指定してください。',
@@ -132,10 +132,17 @@ return [
         'attribute-name' => [
             'rule-name' => 'custom-message',
         ],
+        'date_of_purchase' => [
+            'after' => '期限には、今日より後の日付を指定してください。',
+        ],
     ], 
     'attributes'           => [
         'user_name' => '名前',
         'email' => 'メールアドレス',
-        'password' => 'パスワード'
+        'password' => 'パスワード',
+        'need_item_name' => '商品名',
+        'date_of_purchase' => '期限',
+        'quantity' => '個数'
+
     ],
 ];

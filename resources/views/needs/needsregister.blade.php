@@ -59,6 +59,11 @@
                 
                     <!-- これで名前を登録できる。requiredで、未入力時エラー表示される -->
                 <input type="text" class="mx-auto px-2 my-1" name="need_item_name" value="" required="required">
+                    <!-- バリデーション(100文字超えると登録できなくする) -->
+                @if($errors->has('need_item_name'))
+                <p class="text-danger">{{$errors->first('need_item_name')}} </p>
+                @endif
+
                 <ul class="nav nav-pills flex-column mb-auto ">
                     <!-- これで登録された名前をすべて表示することができる。 -->
                     @foreach ($needs as $need)
@@ -68,8 +73,13 @@
             </div>
 
             <div class="col-4 border-right p-0  ">
-                    <!-- これで個数を登録できる。input_fieldで、－入力が不可 -->
+                    <!-- これで個数を登録できる。input_fieldで、マイナス入力が不可 -->
                 <input type="number" min="0" class="mx-auto px4 my-1 input_field" name="quantity" required="required">
+                    <!-- バリデーション(6桁を超えると登録できなくする) -->
+                @if($errors->has('quantity'))
+                <p class="text-danger">{{$errors->first('quantity')}} </p>
+                @endif
+
                 <ul class="nav nav-pills flex-column mb-auto ">
                     <!-- これで登録された個数をすべて表示することができる。 -->
                     @foreach ($needs as $need)
@@ -81,6 +91,11 @@
             <div class="col-4 border-right p-0 ">
                 <!-- これで期限を登録できる。 -->
                 <input type="date" class="mx-auto px-4 my-1" name="date_of_purchase" required="required">
+                <!-- バリデーション（過去の日付の登録ができなくなる）-->
+                @if($errors->has('date_of_purchase'))
+                <p class="text-danger">{{$errors->first('date_of_purchase')}} </p>
+                @endif
+                
                 <ul class="nav nav-pills flex-column mb-auto ">
                     <!-- これで登録された期限をすべて表示することができる。 -->
                     @foreach ($needs as $need)
@@ -96,7 +111,7 @@
         window.addEventListener('DOMContentLoaded', ()=>{
         document.querySelectorAll('.input_field').forEach(x=>{
             x.addEventListener('input',()=>{
-            var reg=/[^1-9]/g;
+            var reg=/[^0-9]/g;
             var val=x.value;
             if(reg.test(val)){
                 x.value=val.replace(reg,'');
@@ -114,4 +129,5 @@
         padding-top: 15px;
     }
 </style>
+
 @endsection
