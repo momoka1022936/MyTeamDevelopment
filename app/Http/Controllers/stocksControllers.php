@@ -7,6 +7,7 @@ use App\Models\Stock;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redis;
 use Carbon\Carbon;
+use app\Rules\DateFormats;
 
 
 class stocksControllers extends Controller
@@ -118,9 +119,24 @@ class stocksControllers extends Controller
 
     public function stockUpdate(Request $request){
         //編集機能
+        // バリデーション
+        // dd($request);
+        $i = 0;
+        // for ($i=0; $i < count($request->id); $i++) { 
+        foreach ($request->id as $id) {
+            $this->validate($request, [                       
+                "stock_item_name.{$i}" => "required|max:100|required_with:quantity.{$i}",
+                "quantity.{$i}" => "required|max:6|required_with:stock_item_name.{$i}",
+                "alert_number.{$i}" => 'nullable|max:6',
+                "stock_expiration.{$i}" => 'date|required|after:today',
+            ]);
+            $i++;
+        }
+        // }
 
-        $stocks = $request->only(['id', 'stock_item_name','quantity','stock_expiration','alert_number']);
+        // $stocks = $request->only(['id', 'stock_item_name','quantity','stock_expiration','alert_number']);
         
+        // 更新
         $i = 0;
         foreach($request->id as $id){
             $stock = Stock::find($id);

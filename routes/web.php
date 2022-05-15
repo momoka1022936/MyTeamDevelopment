@@ -44,5 +44,5 @@ Route::post('/stockCreate',[App\Http\Controllers\stocksControllers::class,'stock
 
 // 在庫編集画面
 Route::get('/stockEdit',[App\Http\Controllers\stocksControllers::class,'stockEdit'])->name('stocksEdit');
-Route::post('/stockUpdate',[App\Http\Controllers\stocksControllers::class, 'stockUpdate']);
+Route::post('/stockUpdate',[App\Http\Controllers\stocksControllers::class, 'stockUpdate'])->name('stockUpdate');
 Route::delete('/stockDelete',[App\Http\Controllers\stocksControllers::class, 'stockDelete'])->name('stockDelete');
