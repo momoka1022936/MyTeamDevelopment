@@ -34,6 +34,16 @@ class NeedController extends Controller
      */
     public function needUpdate(Request $request)
     {
+        // 入力フォームのバリデーション
+         $request->validate([
+            'id'=>'required|array',
+            'need_item_name'=>'required|array',
+            'need_item_name.*'=>'max:10',
+            'quantity.*'=>'digits_between:1,9',
+            'date_of_purchase.*'=>'date|after:today'
+
+        ]);
+        
         // 0番目から順番に配列の中身を見ていく
         $i = 0;
         
@@ -60,6 +70,11 @@ class NeedController extends Controller
      */
     public function needDelete(Request $request)
     {
+        // チェックボックスにチェックがないままclickすると画面が変わらない状態にする
+        $request->validate([
+            'id'=>'required',
+        ]);
+
         foreach ($request->id as $id) {
             // checkboxからidを取得してレコードを探す
             $need = Need::find($id);

@@ -49,7 +49,7 @@ class NeedsregisterControllers extends Controller
     public function store(Request $request){
         /**バリデーション（文字数100，個数は6桁まで、期限は過去不可）*/
         $request->validate([
-            'need_item_name'=>'required | max:100',
+            'need_item_name'=>'required | max:10',
             'quantity'=>'digits_between:1,6',
             'date_of_purchase'=>'date|after:today'
         ]);

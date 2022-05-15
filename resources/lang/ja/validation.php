@@ -15,7 +15,7 @@ return [
     'accepted'             => ':attributeを承認してください。',
     'accepted_if'          => ':otherが:valueの場合、:attributeを受け入れる必要があります。',
     'active_url'           => ':attributeは、有効なURLではありません。',
-    'after'                => ':attributeには、:dateより後の日付を指定してください。',
+    'after'                => '期限には今日より後の日付を指定してください。',
     'after_or_equal'       => ':attributeには、:date以降の日付を指定してください。',
     'alpha'                => ':attributeには、アルファベッドのみ使用できます。',
     'alpha_dash'           => ':attributeには、英数字(\'A-Z\',\'a-z\',\'0-9\')とハイフンと下線(\'-\',\'_\')が使用できます。',
@@ -39,7 +39,7 @@ return [
     'declined_if'          => ':otherが:valueの場合、:attributeは拒否されなければならない。',
     'different'            => ':attributeと:otherには、異なるものを指定してください。',
     'digits'               => ':attributeは、:digits桁にしてください。',
-    'digits_between'       => ':attributeは、:min桁から:max桁にしてください。',
+    'digits_between'       => '個数は、:min桁から:max桁にしてください。',
     'dimensions'           => ':attributeの画像サイズが無効です',
     'distinct'             => ':attributeの値が重複しています。',
     'email'                => ':attributeは、有効なメールアドレス形式で指定してください。',
@@ -85,7 +85,7 @@ return [
         'array'   => ':attributeの項目は、:max個以下にしてください。',
         'file'    => ':attributeには、:max KB以下のファイルを指定してください。',
         'numeric' => ':attributeには、:max以下の数字を指定してください。',
-        'string'  => ':attributeは、:max文字以下にしてください。',
+        'string'  => '名前は:max文字以下にしてください。',
     ],
     'mimes'                => ':attributeには、:valuesタイプのファイルを指定してください。',
     'mimetypes'            => ':attributeには、:valuesタイプのファイルを指定してください。',
@@ -106,7 +106,7 @@ return [
     'prohibited_unless'    => ':attributeフィールドは、:otherが:valuesでない限り禁止されています。',
     'prohibits'            => ':attribute フィールドは、:other が存在することを禁止します。',
     'regex'                => ':attributeには、有効な正規表現を指定してください。',
-    'required'             => ':attributeは、必ず指定してください。',
+    'required'             => ':attributeは、必ず1つ以上指定してください。',
     'required_array_keys'  => ':attributeフィールドには、:valuesのエントリを含める必要があります。',
     'required_if'          => ':otherが:valueの場合、:attributeを指定してください。',
     'required_unless'      => ':otherが:values以外の場合、:attributeを指定してください。',
@@ -142,7 +142,10 @@ return [
         'password' => 'パスワード',
         'need_item_name' => '商品名',
         'date_of_purchase' => '期限',
-        'quantity' => '個数'
+        'quantity' => '個数',
+        'id' => 'チェックボタン',
+       
 
     ],
+
 ];

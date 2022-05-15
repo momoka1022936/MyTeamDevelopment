@@ -40,8 +40,16 @@
             <li>
                 <div class="button nav-link active link-dark mt-2 p-0">
                     <svg class="bi me-2" width="16" height="16"></svg>
-                    <input form="needDelete" class="btn btn-primary" type="submit" value="選択したものを削除する">
+                    <input form="needDelete" class="btn btn-primary" type="submit" value="選択したものを削除する" >
                 </div>
+                <!-- 選択しないで削除ボタンを押すとエラー表示 -->    
+                @if($errors->any())
+                    <p class="text-danger"> 
+                    @foreach ($errors->all() as $error)
+                        {{ $error }}
+                    @endforeach
+                    </p>
+                @endif
             </li>
         </ul>
         <hr>
@@ -51,49 +59,62 @@
         </a>
     </div>
     <!-- メイン画面  -->
-    <div class="flex-column px-0 d-flex col-10 border-left ml-2 row">
-        <form id="needUpdate" class="col-11 pt-3 form-inline-alignDelete" action="{{ route('needUpdate') }}"
+    <div class="flex-column-auto px-0 d-flex col-10 border-left ml-2 row">
+        <form id="needUpdate" class="col-11 pt-3 form-inline-alignDelete mb-auto " action="{{ route('needUpdate') }}"
             method="post">
             @csrf
+            @foreach ($needs as $need)
             <!-- 名前の入力 -->
             <div class="col-4 border-right p-0 ">
-                @foreach ($needs as $need)
                 <ul class="border-bottom p-0 mx-3">
-                    <input class="w-100 mb-2" type="hidden" name="id[]" value="{{ $need->id }}">
-                    <input class="w-100 mb-2" type="text" name="need_item_name[]" value="{{ $need->need_item_name }}">
-                </ul>
-                @endforeach
+                    <input class="w-100 mb-2" type="hidden" name="id[{{$need->id}}]" value="{{ $need->id }}">
+                    <input class="w-100 mb-2" type="text" name="need_item_name[{{$need->id}}]" value="{{ $need->need_item_name }}">
+                    <!-- 100文字超えるとエラー表示 -->
+                    @if($errors->has("need_item_name.$need->id"))
+                        <p class="text-danger">{{$errors->first("need_item_name.$need->id")}} </p>
+                    @endif
+                </ul>               
+            
             </div>
             <!-- 個数の入力 -->
-            <div class="minus col-3  border-right  p-0">
-                @foreach ($needs as $need)
+            <div class="minus col-3 border-right  p-0">
+               
                 <ul class="border-bottom p-0 mx-3">
-                    <input class="w-100 mb-2 minus" type="number" name="quantity[]" value="{{ $need->quantity }}">
+                    <input class="w-100 mb-2 minus" type="number" name="quantity[{{$need->id}}]" value="{{ $need->quantity }}">
+                    <!-- 6桁を超えるとエラー表示 -->
+                    @if($errors->has("quantity.$need->id"))
+                        <p class="text-danger">{{$errors->first("quantity.$need->id")}} </p>
+                    @endif
                 </ul>
-                @endforeach
+           
             </div>
             <!-- 期限の入力 -->
-            <div class="col-5 mb-3 border-right">
-                @foreach ($needs as $need)
+            <div class="col-5 mb-0 border-right">
+
                 <ul class="border-bottom p-0 mx-2">
-                    <input class="w-100 mb-2" type="date" name="date_of_purchase[]"
+                    <input class="w-100 mb-2 mt-0" type="date" name="date_of_purchase[{{$need->id}}]"
                         value="{{ $need->date_of_purchase }}">
+                    <!-- 過去を入力するとエラー表示 -->    
+                    @if($errors->has("date_of_purchase.$need->id"))
+                        <p class="text-danger">{{$errors->first("date_of_purchase.$need->id")}} </p>
+                    @endif
                 </ul>
-                @endforeach
             </div>
+            @endforeach
         </form>
         <form id="needDelete" action="{{ route('needDelete') }}" class="col-1 pt-3 form-inline-alignDelete border-right"
             method="post">
             @csrf
             @method('delete')
+            <!-- チェックボタン -->
             <div class="mb-2">
                 @foreach ($needs as $need)
                 <ul class="border-bottom mx-2">
                     <input class="mb-3 ml-lg-n3 mr-4 mt-2" id="delete" type="checkbox" name="id[]"
-                        value="{{ $need->id }}">
+                        value="{{ $need->id }}">             
                 </ul>
                 @endforeach
-            </div>
+            </div>   
         </form>
     </div>
     <!-- これは個数のマイナス入力が出来ないようにするための機能 -->
