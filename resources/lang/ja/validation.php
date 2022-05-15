@@ -142,9 +142,8 @@ return [
         'password' => 'パスワード',
         'need_item_name' => '商品名',
         'date_of_purchase' => '期限',
-        'quantity' => '個数'
-
-    ],
+        'quantity' => '個数',
+        
         'stock_item_name.0' => '在庫名',
         'stock_item_name.1' => '在庫名',
         'stock_item_name.2' => '在庫名',
@@ -182,7 +181,5 @@ return [
         'stock_expiration.9' =>'期限',
         'stock_expiration.10' =>'期限',
         'stock_expiration.11' =>'期限',
-
-        
-    ]
+    ],
 ];
