@@ -15,7 +15,11 @@ return [
     'accepted'             => ':attributeを承認してください。',
     'accepted_if'          => ':otherが:valueの場合、:attributeを受け入れる必要があります。',
     'active_url'           => ':attributeは、有効なURLではありません。',
+<<<<<<< HEAD
     'after'                => '期限には今日より後の日付を指定してください。',
+=======
+    'after'                => ':attributeには、今日より後の日付を指定してください。',
+>>>>>>> 675c9bc03a2cdfc15b3fffa19243e0d8cb077d5e
     'after_or_equal'       => ':attributeには、:date以降の日付を指定してください。',
     'alpha'                => ':attributeには、アルファベッドのみ使用できます。',
     'alpha_dash'           => ':attributeには、英数字(\'A-Z\',\'a-z\',\'0-9\')とハイフンと下線(\'-\',\'_\')が使用できます。',
@@ -84,8 +88,8 @@ return [
     'max'                  => [
         'array'   => ':attributeの項目は、:max個以下にしてください。',
         'file'    => ':attributeには、:max KB以下のファイルを指定してください。',
-        'numeric' => ':attributeには、:max以下の数字を指定してください。',
-        'string'  => '名前は:max文字以下にしてください。',
+        'numeric' => ':attributeには、:max桁以下の数字を指定してください。',
+        'string'  => ':attributeは、:max文字以下にしてください。',
     ],
     'mimes'                => ':attributeには、:valuesタイプのファイルを指定してください。',
     'mimetypes'            => ':attributeには、:valuesタイプのファイルを指定してください。',
@@ -147,5 +151,48 @@ return [
        
 
     ],
+<<<<<<< HEAD
 
+=======
+        'stock_item_name.0' => '在庫名',
+        'stock_item_name.1' => '在庫名',
+        'stock_item_name.2' => '在庫名',
+        'stock_item_name.3' => '在庫名',
+        'stock_item_name.4' => '在庫名',
+        'stock_item_name.5' => '在庫名',
+        'stock_item_name.6' => '在庫名',
+        'stock_item_name.7' => '在庫名',
+        'stock_item_name.8' => '在庫名',
+        'stock_item_name.9' => '在庫名',
+        'stock_item_name.10' => '在庫名',
+        'stock_item_name.11' => '在庫名',
+        'quantity.0' => '在庫',
+        'quantity.1' => '在庫',
+        'quantity.2' => '在庫',
+        'quantity.3' => '在庫',
+        'quantity.4' => '在庫',
+        'quantity.5' => '在庫',
+        'quantity.6' => '在庫',
+        'quantity.7' => '在庫',
+        'quantity.8' => '在庫',
+        'quantity.9' => '在庫',
+        'quantity.10' => '在庫',
+        'quantity.11' => '在庫',
+        'alert_number.*' => 'アラートまでの個数',
+        'stock_expiration.0' =>'期限',
+        'stock_expiration.1' =>'期限',
+        'stock_expiration.2' =>'期限',
+        'stock_expiration.3' =>'期限',
+        'stock_expiration.4' =>'期限',
+        'stock_expiration.5' =>'期限',
+        'stock_expiration.6' =>'期限',
+        'stock_expiration.7' =>'期限',
+        'stock_expiration.8' =>'期限',
+        'stock_expiration.9' =>'期限',
+        'stock_expiration.10' =>'期限',
+        'stock_expiration.11' =>'期限',
+
+        
+    ]
+>>>>>>> 675c9bc03a2cdfc15b3fffa19243e0d8cb077d5e
 ];
