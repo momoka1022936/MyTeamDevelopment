@@ -75,8 +75,11 @@
             <div class="col-3 border-right p-0 ">
                 @for($i = 0; $i < 12; $i++)
                     <ul class="border-bottom p-0   mx-2">
-                        <input class="w-100 mb-2" type="text" name="stock_item_name[]">
+                        <input class="w-100 mb-2" type="text" name="stock_item_name[]" value="{{ old('stock_item_name.'.$i) }}">
                         <input form="path" type="hidden" name="user_id[]">
+                        @error('stock_item_name.'.$i)
+                          <span class="invalid-feedback d-block fs-1">{{ $message }}</span>
+                        @enderror
                     </ul>
                 @endfor
             </div>
@@ -84,24 +87,35 @@
             <div class="minus col-2  border-right  p-0">
             @for($i = 0; $i < 12; $i++)
                 <ul class="border-bottom p-0 mx-2">
-                    <input class="w-100 mb-2 minus" type="number" name="quantity[]" pattern="^[0-9]+$">
+                    <input class="w-100 mb-2 minus" type="number" name="quantity[]" pattern="^[0-9]+$" value="{{ old('quantity.'.$i) }}">
+                    @error('quantity.'.$i)
+                        <span class="invalid-feedback d-block fs-1">{{ $message }}</span>
+                    @enderror
                 </ul>
+                
             @endfor
             </div>
             <!-- アラートまでの個数の入力 -->
             <div class="minus  col-3 m-0 border-right p-0">
             @for($i = 0; $i < 12; $i++)
                 <ul class="border-bottom p-0  mx-2">
-                    <input class="w-100 mb-2 minus" type="number" name="alert_number[]" pattern="^[0-9]+$">
+                    <input class="w-100 mb-2 minus" type="number" name="alert_number[]" pattern="^[0-9]+$" value="{{ old('alert_number.'.$i) }}">
+                    @error('alert_number.'.$i)
+                        <span class="invalid-feedback d-block fs-1">{{ $message }}</span>
+                    @enderror
                 </ul>
+                
             @endfor
             </div>
             <!-- 期限の入力 -->
             <div class="col-4 mb-2 pb-3 border-right p-0">
             @for($i = 0; $i < 12; $i++)
                 <ul class="border-bottom p-0 mx-2">
-                    <input class="w-100 mb-2" type="date" name="stock_expiration[]">
-                </ul>
+                    <input class="w-100 mb-2" type="date" name="stock_expiration[]" value="{{ old('stock_expiration.'.$i) }}" max="9999-12-31" >
+                    @error('stock_expiration.'.$i)
+                        <span class="invalid-feedback d-block fs-1">{{ $message }}</span>
+                    @enderror
+                </ul> 
             @endfor
             </div>
 
