@@ -46,6 +46,3 @@ Route::post('/stockCreate',[App\Http\Controllers\stocksControllers::class,'stock
 Route::get('/stockEdit',[App\Http\Controllers\stocksControllers::class,'stockEdit'])->name('stocksEdit');
 Route::post('/stockUpdate',[App\Http\Controllers\stocksControllers::class, 'stockUpdate']);
 Route::delete('/stockDelete',[App\Http\Controllers\stocksControllers::class, 'stockDelete'])->name('stockDelete');
-
-
-

@@ -29,7 +29,7 @@ class NeedsregisterControllers extends Controller
    */
 
   public function insert(Request $request) 
-  {
+  {   
   // MOdelsからNeedsregisretModelをとってcreateでリクエストされた全部のレコードをつくってる
   User::create($request->all());
   // redirectで読み込みなおしをしてhomeにとぶようにしてくれる。return をviewにしたらそのままinsertでかえされてしまう。
@@ -47,6 +47,13 @@ class NeedsregisterControllers extends Controller
      */
     /**request*/
     public function store(Request $request){
+        /**バリデーション（文字数100，個数は6桁まで、期限は過去不可）*/
+        $request->validate([
+            'need_item_name'=>'required | max:100',
+            'quantity'=>'digits_between:1,6',
+            'date_of_purchase'=>'date|after:today'
+        ]);
+
     /**５３Needsregisterの空データをつくる。 */
     $needs= new Need();
     /**request allで全部のデータ取得,$fillable（Needsregister.php）だけ取得そして保存 */
@@ -93,6 +100,11 @@ class NeedsregisterControllers extends Controller
         }
 
     }
+
+
+    ////登録フォームに制限を超えた文字を入力するとエラー表示
+
+
 
 
 }    
