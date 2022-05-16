@@ -125,8 +125,8 @@ class stocksControllers extends Controller
         foreach ($request->id as $id) {
             // 配列として送られてきた各カラムの値を順番にチェック
             $this->validate($request, [                       
-                "stock_item_name.{$i}" => "required|max:100|required_with:quantity.{$i}",
-                "quantity.{$i}" => "required|max:6|required_with:stock_item_name.{$i}",
+                "stock_item_name.{$i}" => "required|max:100",
+                "quantity.{$i}" => "required|max:6",
                 "alert_number.{$i}" => 'nullable|max:6',
                 "stock_expiration.{$i}" => 'required|date|after:today',
             ], [], [                
@@ -156,12 +156,10 @@ class stocksControllers extends Controller
     public function stockDelete(Request $request){
     // 削除機能
 
-    // チェックボックスが一つもチェックされていない場合、エラーメッセージを表示
-    $this->validate($request, [
-        "id" => 'required'
-        ],[],[
-            'id' => 'チェックボックス'
-        ]);
+    // チェックボックスが一つもチェックされていない場合、ホーム画面にリダイレクト
+    if (!isset($request->id)) {
+        return redirect('/stocks');
+    }
 
     foreach ($request->id as $id) {
         // checkboxからidを取得してレコードを探す

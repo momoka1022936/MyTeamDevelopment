@@ -76,7 +76,7 @@
                 @foreach ($stocks as $stock)
                 <ul class="border-bottom p-0 mx-2">
                     <input class="w-100 mb-2" type="hidden" name="id[]" value="{{$stock->id}}">
-                    <input class="w-100 mb-2" type="text" name="stock_item_name[]" value="{{ $stock->stock_item_name }}">
+                    <input class="w-100 mb-2" type="text" name="stock_item_name[]" value="{{ $stock->stock_item_name }}" required>
                     @if($errors->has("stock_item_name.{$i}"))
                     <p class="text-danger">{{$errors->first("stock_item_name.{$i}")}} </p>
                     @endif
@@ -90,7 +90,7 @@
                 @foreach ($stocks as $stock)
                 <ul class="border-bottom p-0 mx-2">
                     <input class="w-100 mb-2 minus" type="number" name="quantity[]" value="{{ $stock->quantity }}"
-                        pattern="^[0-9]+$">
+                        pattern="^[0-9]+$" required>
                     @if($errors->has("quantity.{$i}"))
                     <p class="text-danger">{{$errors->first("quantity.{$i}")}} </p>
                     @endif
@@ -118,7 +118,7 @@
                 @foreach ($stocks as $stock)
                 <ul class="border-bottom p-0 mx-2">
                     <input class="w-100 mb-2" type="date" name="stock_expiration[]"
-                        value="{{ $stock->stock_expiration }}">
+                        value="{{ $stock->stock_expiration }}" required>
                     @if($errors->has("stock_expiration.$i"))
                     <p class="text-danger">{{$errors->first("stock_expiration.$i")}} </p>
                     @endif
