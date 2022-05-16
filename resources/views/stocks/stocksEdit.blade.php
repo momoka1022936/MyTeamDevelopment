@@ -1,22 +1,25 @@
 @extends('layouts.app')
 @section('content')
 <header class="flex-md-nowrap border-bottom d-flex container-fluid m-0 row">
-    <div class="align-items-center mb-3 mb-md-0 me-md-auto flex-column d-flex col-2">
+    <div class="align-items-center mb-3 mb-md-0 me-md-auto pt-3 flex-column d-flex col-2">
         <span class="h2 text-center">編集画面</span>
     </div>
     <div class=" px-0 d-flex col-10 ml-2 row  border-right">
-        <div class="align-items-center mb-3 mb-md-0 me-md-auto flex-column d-flex col-3">
-            <span class="h2 text-center">名前</span>
+        <div class="col-11 pt-3 form-inline-alignDelete">
+            <div class="align-items-center mb-3 mb-md-0 me-md-auto flex-column d-flex col-3">
+                <span class="h2 text-center">名前</span>
+            </div>
+            <div class="align-items-center mb-3 mb-md-0 me-md-auto flex-column d-flex col-3">
+                <span class="h2 text-center">在庫</span>
+            </div>
+            <div class="align-items-center mb-3 mb-md-0 me-md-auto flex-column d-flex col-3">
+                <span class="h2 text-center">アラートまでの<br>個数</span>
+            </div>
+            <div class="align-items-center mb-3 mb-md-0 me-md-auto flex-column d-flex col-3">
+                <span class="h2 text-center">期限</span>
+            </div>
         </div>
-        <div class="align-items-center mb-3 mb-md-0 me-md-auto flex-column d-flex col-2">
-            <span class="h2 text-center">在庫</span>
-        </div>
-        <div class="align-items-center mb-3 mb-md-0 me-md-auto flex-column d-flex col-3">
-            <span class="h2 text-center">アラートまでの個数</span>
-        </div>
-        <div class="align-items-center mb-3 mb-md-0 me-md-auto flex-column d-flex col-3">
-            <span class="h2 text-center">期限</span>
-        </div>
+        <div class="col-1 pt-3 form-inline-alignDelete"></div>
     </div>
 </header>
 <div class="container-fluid m-0 row">
@@ -43,15 +46,19 @@
                 </a>
             </li>
             <div class="button nav-link active link-dark mt-2 p-0">
-                <!-- 変更 -->
+                <!-- 変更ボタン -->
                 <svg class="bi me-2" width="16" height="16"></svg>
                 <input form="stockUpdate" class="btn btn-primary" type="submit" value="入力内容を変更する">
             </div>
             <div class="button nav-link active link-dark mt-2 p-0">
                 <svg class="bi me-2" width="16" height="16"></svg>
-                <!-- 削除 -->
+                <!-- チェックした在庫を削除するボタン -->
                 <input form="stockDelete" class="btn btn-primary" type="submit" value="選択したものを削除する">
             </div>
+            @if($errors->has("id"))
+            <p class="text-danger">{{$errors->first("id")}} </p>
+            @endif
+
         </ul>
         <hr>
         <a class="dropdown-item border border-2 rounded text-center " href="{{ route('logout') }}" onclick="event.preventDefault();
@@ -69,7 +76,7 @@
                 @foreach ($stocks as $stock)
                 <ul class="border-bottom p-0 mx-2">
                     <input class="w-100 mb-2" type="hidden" name="id[]" value="{{$stock->id}}">
-                    <input class="w-100 mb-2" type="text" name="stock_item_name[]" value="{{$stock->stock_item_name}}">
+                    <input class="w-100 mb-2" type="text" name="stock_item_name[]" value="{{ $stock->stock_item_name }}">
                     @if($errors->has("stock_item_name.{$i}"))
                     <p class="text-danger">{{$errors->first("stock_item_name.{$i}")}} </p>
                     @endif
@@ -82,7 +89,7 @@
                 <?php $i = 0; ?>
                 @foreach ($stocks as $stock)
                 <ul class="border-bottom p-0 mx-2">
-                    <input class="w-100 mb-2 minus" type="number" name="quantity[]" value="{{$stock->quantity}}"
+                    <input class="w-100 mb-2 minus" type="number" name="quantity[]" value="{{ $stock->quantity }}"
                         pattern="^[0-9]+$">
                     @if($errors->has("quantity.{$i}"))
                     <p class="text-danger">{{$errors->first("quantity.{$i}")}} </p>
@@ -96,7 +103,7 @@
                 <?php $i = 0; ?>
                 @foreach ($stocks as $stock)
                 <ul class="border-bottom p-0  mx-2">
-                    <input class="w-100 mb-2 minus" type="number" name="alert_number[]" value="{{$stock->alert_number}}"
+                    <input class="w-100 mb-2 minus" type="number" name="alert_number[]" value="{{ $stock->alert_number }}"
                         pattern="^[0-9]+$">
                     @if($errors->has("alert_number.{$i}"))
                     <p class="text-danger">{{$errors->first("alert_number.{$i}")}} </p>
@@ -112,8 +119,8 @@
                 <ul class="border-bottom p-0 mx-2">
                     <input class="w-100 mb-2" type="date" name="stock_expiration[]"
                         value="{{ $stock->stock_expiration }}">
-                    @if($errors->has('stock_expiration_'.$i))
-                    <p class="text-danger">{{$errors->first('stock_expiration_'.$i)}} </p>
+                    @if($errors->has("stock_expiration.$i"))
+                    <p class="text-danger">{{$errors->first("stock_expiration.$i")}} </p>
                     @endif
                 </ul>
                 <?php $i++; ?>

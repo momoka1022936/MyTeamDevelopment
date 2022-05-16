@@ -119,22 +119,24 @@ class stocksControllers extends Controller
 
     public function stockUpdate(Request $request){
         //編集機能
+
         // バリデーション
-        // dd($request);
         $i = 0;
-        // for ($i=0; $i < count($request->id); $i++) { 
         foreach ($request->id as $id) {
+            // 配列として送られてきた各カラムの値を順番にチェック
             $this->validate($request, [                       
                 "stock_item_name.{$i}" => "required|max:100|required_with:quantity.{$i}",
                 "quantity.{$i}" => "required|max:6|required_with:stock_item_name.{$i}",
                 "alert_number.{$i}" => 'nullable|max:6',
-                "stock_expiration.{$i}" => 'date|required|after:today',
-            ]);
+                "stock_expiration.{$i}" => 'required|date|after:today',
+            ], [], [                
+                "stock_item_name.{$i}" => '在庫名',
+                "quantity.{$i}" => '在庫',
+                "alert_number.{$i}" => 'アラートまでの個数',
+                "stock_expiration.{$i}" => '期限',
+                ]);
             $i++;
         }
-        // }
-
-        // $stocks = $request->only(['id', 'stock_item_name','quantity','stock_expiration','alert_number']);
         
         // 更新
         $i = 0;
@@ -153,6 +155,13 @@ class stocksControllers extends Controller
 
     public function stockDelete(Request $request){
     // 削除機能
+
+    // チェックボックスが一つもチェックされていない場合、エラーメッセージを表示
+    $this->validate($request, [
+        "id" => 'required'
+        ],[],[
+            'id' => 'チェックボックス'
+        ]);
 
     foreach ($request->id as $id) {
         // checkboxからidを取得してレコードを探す
