@@ -19,6 +19,7 @@ class Stock extends Model
         'quantity',
         'alert_number',
         'stock_expiration',
+        'alert_number'
     ];
     public function user(){
         return $this->belongsTo('App\User');

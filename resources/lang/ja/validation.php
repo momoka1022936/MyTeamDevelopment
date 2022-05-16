@@ -11,6 +11,7 @@
 |
 */
 
+
 return [
     'accepted'             => ':attributeを承認してください。',
     'accepted_if'          => ':otherが:valueの場合、:attributeを受け入れる必要があります。',

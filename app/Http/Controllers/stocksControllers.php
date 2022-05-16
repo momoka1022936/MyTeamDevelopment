@@ -7,6 +7,7 @@ use App\Models\Stock;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redis;
 use Carbon\Carbon;
+use app\Rules\DateFormats;
 
 
 class stocksControllers extends Controller
@@ -119,8 +120,25 @@ class stocksControllers extends Controller
     public function stockUpdate(Request $request){
         //編集機能
 
-        $stocks = $request->only(['id', 'stock_item_name','quantity','stock_expiration','alert_number']);
+        // バリデーション
+        $i = 0;
+        foreach ($request->id as $id) {
+            // 配列として送られてきた各カラムの値を順番にチェック
+            $this->validate($request, [                       
+                "stock_item_name.{$i}" => "required|max:100",
+                "quantity.{$i}" => "required|max:6",
+                "alert_number.{$i}" => 'nullable|max:6',
+                "stock_expiration.{$i}" => 'required|date|after:today',
+            ], [], [                
+                "stock_item_name.{$i}" => '在庫名',
+                "quantity.{$i}" => '在庫',
+                "alert_number.{$i}" => 'アラートまでの個数',
+                "stock_expiration.{$i}" => '期限',
+                ]);
+            $i++;
+        }
         
+        // 更新
         $i = 0;
         foreach($request->id as $id){
             $stock = Stock::find($id);
@@ -137,6 +155,11 @@ class stocksControllers extends Controller
 
     public function stockDelete(Request $request){
     // 削除機能
+
+    // チェックボックスが一つもチェックされていない場合、ホーム画面にリダイレクト
+    if (!isset($request->id)) {
+        return redirect('/stocks');
+    }
 
     foreach ($request->id as $id) {
         // checkboxからidを取得してレコードを探す
