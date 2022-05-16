@@ -75,7 +75,7 @@ class NeedController extends Controller
     public function needDelete(Request $request)
     {
         
-        // チェックボックスにチェックがないままclickするとhomeに遷移
+        // チェックボックスにチェックがないままでclickするとhomeに遷移
         try {
             $request->validate([
                 'id'=>'required',
