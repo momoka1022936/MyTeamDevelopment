@@ -42,14 +42,6 @@
                     <svg class="bi me-2" width="16" height="16"></svg>
                     <input form="needDelete" class="btn btn-primary" type="submit" value="選択したものを削除する" >
                 </div>
-                <!-- 選択しないで削除ボタンを押すとエラー表示 -->    
-                @if($errors->any())
-                    <p class="text-danger"> 
-                    @foreach ($errors->all() as $error)
-                        {{ $error }}
-                    @endforeach
-                    </p>
-                @endif
             </li>
         </ul>
         <hr>

@@ -15,11 +15,7 @@ return [
     'accepted'             => ':attributeを承認してください。',
     'accepted_if'          => ':otherが:valueの場合、:attributeを受け入れる必要があります。',
     'active_url'           => ':attributeは、有効なURLではありません。',
-<<<<<<< HEAD
-    'after'                => '期限には今日より後の日付を指定してください。',
-=======
     'after'                => ':attributeには、今日より後の日付を指定してください。',
->>>>>>> 675c9bc03a2cdfc15b3fffa19243e0d8cb077d5e
     'after_or_equal'       => ':attributeには、:date以降の日付を指定してください。',
     'alpha'                => ':attributeには、アルファベッドのみ使用できます。',
     'alpha_dash'           => ':attributeには、英数字(\'A-Z\',\'a-z\',\'0-9\')とハイフンと下線(\'-\',\'_\')が使用できます。',
@@ -145,15 +141,15 @@ return [
         'email' => 'メールアドレス',
         'password' => 'パスワード',
         'need_item_name' => '商品名',
+        'need_item_name.*' => '商品名',
         'date_of_purchase' => '期限',
         'quantity' => '個数',
         'id' => 'チェックボタン',
        
 
     ],
-<<<<<<< HEAD
-
-=======
+    [
+    
         'stock_item_name.0' => '在庫名',
         'stock_item_name.1' => '在庫名',
         'stock_item_name.2' => '在庫名',
@@ -194,5 +190,4 @@ return [
 
         
     ]
->>>>>>> 675c9bc03a2cdfc15b3fffa19243e0d8cb077d5e
 ];
