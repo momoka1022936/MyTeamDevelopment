@@ -15,7 +15,7 @@ return [
     'accepted'             => ':attributeを承認してください。',
     'accepted_if'          => ':otherが:valueの場合、:attributeを受け入れる必要があります。',
     'active_url'           => ':attributeは、有効なURLではありません。',
-    'after'                => ':attributeには、今日より後の日付を指定してください。',
+    'after'                => ':attributeには、:dateより後の日付を指定してください。',
     'after_or_equal'       => ':attributeには、:date以降の日付を指定してください。',
     'alpha'                => ':attributeには、アルファベッドのみ使用できます。',
     'alpha_dash'           => ':attributeには、英数字(\'A-Z\',\'a-z\',\'0-9\')とハイフンと下線(\'-\',\'_\')が使用できます。',
@@ -135,6 +135,9 @@ return [
         'date_of_purchase' => [
             'after' => '期限には、今日より後の日付を指定してください。',
         ],
+        'stock_expiration.*' => [
+            'after' => '期限には、今日より後の日付を指定してください。',
+        ],
     ], 
     'attributes'           => [
         'user_name' => '名前',
@@ -145,11 +148,12 @@ return [
         'date_of_purchase' => '期限',
         'quantity' => '個数',
         'id' => 'チェックボタン',
-       
+          
 
     ],
     [
     
+
         'stock_item_name.0' => '在庫名',
         'stock_item_name.1' => '在庫名',
         'stock_item_name.2' => '在庫名',
@@ -187,7 +191,5 @@ return [
         'stock_expiration.9' =>'期限',
         'stock_expiration.10' =>'期限',
         'stock_expiration.11' =>'期限',
-
-        
-    ]
+    ],
 ];
