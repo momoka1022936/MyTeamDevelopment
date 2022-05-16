@@ -39,7 +39,7 @@ class NeedController extends Controller
         $request->validate([
             'id'=>'required|array',
             'need_item_name'=>'required|array',
-            'need_item_name.*'=>'between:1,10',
+            'need_item_name.*'=>'between:1,100',
             'quantity.*'=>'digits_between:1,9',
             'date_of_purchase.*'=>'date|after:today'
 
