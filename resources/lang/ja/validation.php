@@ -32,7 +32,7 @@ return [
     'boolean'              => ':attributeには、\'true\'か\'false\'を指定してください。',
     'confirmed'            => ':attributeと:attribute確認が一致しません。',
     'current_password'     => 'パスワードが正しくありません。',
-    'date'                 => ':attributeは、正しい日付ではありません。',
+    'date'                 => ':attributeは、必ず入力してください',
     'date_equals'          => ':attributeは:dateに等しい日付でなければなりません。',
     'date_format'          => ':attributeの形式は、\':format\'と合いません。',
     'declined'             => ':attributeは 辞退する必要があります。',
@@ -135,6 +135,15 @@ return [
         'date_of_purchase' => [
             'after' => '期限には、今日より後の日付を指定してください。',
         ],
+        'date_of_purchase.*' => [
+            'date' => '期限には、今日より後の日付を入力してください。',
+        ],
+        'date_of_purchase' => [
+            'date' => '期限には、今日より後の日付を入力してください。',
+        ],
+        'date_of_purchase.*' => [
+            'after' => '期限には、今日より後の日付を入力してください。',
+        ],
         'stock_expiration.*' => [
             'after' => '期限には、今日より後の日付を指定してください。',
         ],
@@ -146,8 +155,9 @@ return [
         'need_item_name' => '商品名',
         'need_item_name.*' => '商品名',
         'date_of_purchase' => '期限',
+        'date_of_purchase.*' => '期限',
         'quantity' => '個数',
-        'id' => 'チェックボタン',
+        
           
 
     ],
