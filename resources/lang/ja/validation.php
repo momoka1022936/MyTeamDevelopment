@@ -33,14 +33,14 @@ return [
     'boolean'              => ':attributeには、\'true\'か\'false\'を指定してください。',
     'confirmed'            => ':attributeと:attribute確認が一致しません。',
     'current_password'     => 'パスワードが正しくありません。',
-    'date'                 => ':attributeは、正しい日付ではありません。',
+    'date'                 => ':attributeは、必ず入力してください',
     'date_equals'          => ':attributeは:dateに等しい日付でなければなりません。',
     'date_format'          => ':attributeの形式は、\':format\'と合いません。',
     'declined'             => ':attributeは 辞退する必要があります。',
     'declined_if'          => ':otherが:valueの場合、:attributeは拒否されなければならない。',
     'different'            => ':attributeと:otherには、異なるものを指定してください。',
     'digits'               => ':attributeは、:digits桁にしてください。',
-    'digits_between'       => ':attributeは、:min桁から:max桁にしてください。',
+    'digits_between'       => '個数は、:min桁から:max桁にしてください。',
     'dimensions'           => ':attributeの画像サイズが無効です',
     'distinct'             => ':attributeの値が重複しています。',
     'email'                => ':attributeは、有効なメールアドレス形式で指定してください。',
@@ -107,7 +107,7 @@ return [
     'prohibited_unless'    => ':attributeフィールドは、:otherが:valuesでない限り禁止されています。',
     'prohibits'            => ':attribute フィールドは、:other が存在することを禁止します。',
     'regex'                => ':attributeには、有効な正規表現を指定してください。',
-    'required'             => ':attributeは、必ず指定してください。',
+    'required'             => ':attributeは、必ず1つ以上指定してください。',
     'required_array_keys'  => ':attributeフィールドには、:valuesのエントリを含める必要があります。',
     'required_if'          => ':otherが:valueの場合、:attributeを指定してください。',
     'required_unless'      => ':otherが:values以外の場合、:attributeを指定してください。',
@@ -136,6 +136,15 @@ return [
         'date_of_purchase' => [
             'after' => '期限には、今日より後の日付を指定してください。',
         ],
+        'date_of_purchase.*' => [
+            'date' => '期限には、今日より後の日付を入力してください。',
+        ],
+        'date_of_purchase' => [
+            'date' => '期限には、今日より後の日付を入力してください。',
+        ],
+        'date_of_purchase.*' => [
+            'after' => '期限には、今日より後の日付を入力してください。',
+        ],
         'stock_expiration.*' => [
             'after' => '期限には、今日より後の日付を指定してください。',
         ],
@@ -145,8 +154,16 @@ return [
         'email' => 'メールアドレス',
         'password' => 'パスワード',
         'need_item_name' => '商品名',
+        'need_item_name.*' => '商品名',
         'date_of_purchase' => '期限',
+        'date_of_purchase.*' => '期限',
         'quantity' => '個数',
+        
+          
+
+    ],
+    [
+    
 
         'stock_item_name.0' => '在庫名',
         'stock_item_name.1' => '在庫名',

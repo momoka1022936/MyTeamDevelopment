@@ -101,12 +101,6 @@ class NeedsregisterControllers extends Controller
 
     }
 
-
-    ////登録フォームに制限を超えた文字を入力するとエラー表示
-
-
-
-
 }    
 
 
