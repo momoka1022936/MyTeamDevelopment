@@ -16,7 +16,7 @@ return [
     'accepted'             => ':attributeを承認してください。',
     'accepted_if'          => ':otherが:valueの場合、:attributeを受け入れる必要があります。',
     'active_url'           => ':attributeは、有効なURLではありません。',
-    'after'                => ':attributeには、:dateより後の日付を指定してください。',
+    'after'                => ':attributeには、今日より後の日付を指定してください。',
     'after_or_equal'       => ':attributeには、:date以降の日付を指定してください。',
     'alpha'                => ':attributeには、アルファベッドのみ使用できます。',
     'alpha_dash'           => ':attributeには、英数字(\'A-Z\',\'a-z\',\'0-9\')とハイフンと下線(\'-\',\'_\')が使用できます。',
