@@ -158,9 +158,6 @@ return [
         'date_of_purchase' => '期限',
         'date_of_purchase.*' => '期限',
         'quantity' => '個数',
-        
-          
-
     ],
     [
     
