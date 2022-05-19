@@ -158,10 +158,6 @@ return [
         'date_of_purchase' => '期限',
         'date_of_purchase.*' => '期限',
         'quantity' => '個数',
-    ],
-    [
-    
-
         'stock_item_name.0' => '在庫名',
         'stock_item_name.1' => '在庫名',
         'stock_item_name.2' => '在庫名',
