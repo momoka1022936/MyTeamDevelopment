@@ -10037,3 +10037,9 @@ input[type=checkbox] {
 .fs-1{
   font-size: 7px;
 }
+li {
+  white-space:nowrap;
+  width:100%;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
