@@ -9,6 +9,12 @@ use Illuminate\Support\Facades\DB;
 
 class NeedController extends Controller
 {
+    public function __construct()
+
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * 買い物リスト一覧
      */
