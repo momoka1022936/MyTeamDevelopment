@@ -9,6 +9,12 @@ use Illuminate\Support\Facades\DB;
 
 class NeedController extends Controller
 {
+    public function __construct()
+
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * 買い物リスト一覧
      */
@@ -40,7 +46,7 @@ class NeedController extends Controller
             'id'=>'required|array',
             'need_item_name'=>'required|array',
             'need_item_name.*'=>'between:1,100',
-            'quantity.*'=>'digits_between:1,9',
+            'quantity.*'=>'digits_between:1,6',
             'date_of_purchase.*'=>'date|after:today'
 
         ]);
