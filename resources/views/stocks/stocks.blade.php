@@ -54,19 +54,19 @@
     <div class="flex-column px-0 pt-3 d-flex col-3 border-right  border-left">
         <ul class="nav nav-pills flex-column mb-auto">
             <!-- これで登録された名前をすべて表示することができる。 -->
-            @foreach ($stocks as $stock)
-                <li class="nav-item text-center mb-3 border-bottom">{{ $stock->stock_item_name }}</li>
+            @foreach ($stock_item_name as $stock)
+                <li class="nav-item text-center mb-3 border-bottom">{{ $stock }}</li>
             @endforeach
         </ul>
     </div>
     <div class="flex-column  px-0 pt-3 d-flex col-2 border-right ">
         <ul class="nav nav-pills flex-column mb-auto">
             <!-- これで登録された個数をすべて表示することができる。 -->
-            @foreach ($stocks as $stock)
-                @if($stock->quantity <= $stock->alert_number)
-                    <li class="nav-item text-center  mb-3 border-bottom text-red">{{ $stock->quantity }}</li>
+            @foreach ($quantity as $stock)
+                @if($stock <= $alert_number)
+                    <li class="nav-item text-center  mb-3 border-bottom text-red">{{ $stock }}</li>
                 @else
-                    <li class="nav-item text-center  mb-3 border-bottom">{{ $stock->quantity }}</li>
+                    <li class="nav-item text-center  mb-3 border-bottom">{{ $stock }}</li>
                 @endif
             @endforeach
         </ul>

@@ -23,10 +23,13 @@ class stocksControllers extends Controller
     //selectは取得するカラムを指定することができる。この場合はすべて取得している。
     public function stocks()
     {
+        $user_id = auth()->id();
+        $stocks = stock::where('user_id', $user_id)->get()->toArray();
 
-        $stocks = DB::select('select * from stocks');
         $data = ['stocks' => $stocks];
         // ここで一週間後の日付を取得
+        // dd($stocks);
+        $stock_item_name = array_column($stocks, 'stock_item_name');
         $week1 = date("Y-m-d",strtotime("+1 week"));
         // ここで、stock_expirationのカラムのデータをすべて取得する。
         $stock_expiration = array_column($stocks, 'stock_expiration');
@@ -35,7 +38,7 @@ class stocksControllers extends Controller
         // ここで、alert_numberのカラムのデータをすべて取得する。
         $alert_number  = array_column($stocks, 'alert_number');
 
-        return view('stocks.stocks', compact('week1','stock_expiration','alert_number', 'quantity') ,$data);
+        return view('stocks.stocks', compact('week1','stock_expiration','alert_number', 'quantity','stock_item_name') ,$data);
     }
 
     //登録画面の表示
@@ -112,14 +115,16 @@ class stocksControllers extends Controller
     }
 
     public function stockEdit(){
-        $stocks = DB::select('select * from stocks');
+        $user_id = auth()->id();
+        $stocks = stock::where('user_id', $user_id)->get();
+        // dd($stocks);
         $data = ['stocks' => $stocks];
         return view('stocks.stocksEdit', $data);
     }
 
     public function stockUpdate(Request $request){
         //編集機能
-
+        
         // バリデーション
         $i = 0;
         foreach ($request->id as $id) {
