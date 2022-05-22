@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models;
 use \routes\web;
+use App\Models\User;
 use App\Models\Need; 
 use Illuminate\Support\Facades\DB;
 use Laravel\Fortify\Contracts\LogoutResponse;
@@ -13,10 +14,10 @@ use Laravel\Fortify\Contracts\LogoutResponse;
 
 class NeedsregisterControllers extends Controller
 {
-    public function needsregister()
+    public function needsregister(Request $request)
     {
         /*$needsregisterはデータベースのneedsから全てを取得,上から順に新しく登録した物が表示*/ 
-        $needsregister = DB::table('needs')->orderBy('created_at', 'desc')->get();
+        $needsregister = $request->user()->needs()->orderBy('created_at', 'desc')->get();
         /*needs.needsregisterに渡す、関数$needsregisterが使えるようにする*/
         return view('needs.needsregister',['needs'=>$needsregister]);
     }
@@ -30,7 +31,7 @@ class NeedsregisterControllers extends Controller
 
   public function insert(Request $request) 
   {   
-  // MOdelsからNeedsregisretModelをとってcreateでリクエストされた全部のレコードをつくってる
+  // MOdelsからNeedsregisterModelをとってcreateでリクエストされた全部のレコードをつくってる
   User::create($request->all());
   // redirectで読み込みなおしをしてhomeにとぶようにしてくれる。return をviewにしたらそのままinsertでかえされてしまう。
       return redirect('/needs/home');
@@ -54,10 +55,15 @@ class NeedsregisterControllers extends Controller
             'date_of_purchase'=>'date|after:today'
         ]);
 
-    /**５３Needsregisterの空データをつくる。 */
-    $needs= new Need();
-    /**request allで全部のデータ取得,$fillable（Needsregister.php）だけ取得そして保存 */
-    $needs->fill($request->all())->save();
+    // /**５３Needsregisterの空データをつくる。 */
+    // $needs= new Need();
+    // /**request allで全部のデータ取得,$fillable（Needsregister.php）だけ取得そして保存 */
+    // $needs->fill($request->all())->save();
+    $request->user()->needs()->create([
+        'need_item_name' => $request->need_item_name,
+        'quantity' => $request->quantity,
+        'date_of_purchase' => $request->date_of_purchase
+    ]);
 
     return redirect('/needs/needsregister');
     }

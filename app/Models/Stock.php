@@ -21,9 +21,13 @@ class Stock extends Model
         'stock_expiration',
         'alert_number'
     ];
-    public function user(){
-        return $this->belongsTo('App\User');
-      }
+    /**
+     * 在庫を保持するユーザーの取得
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
       protected $dates = [
         'stock_expiration',
     ];

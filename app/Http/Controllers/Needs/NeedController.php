@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Needs;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\User;
 use App\Models\Need;
 use Illuminate\Support\Facades\DB;
 
@@ -17,20 +18,22 @@ class NeedController extends Controller
 
     /**
      * 買い物リスト一覧
+     * @param Request $request
      */
-    public function index()
+    public function index(Request $request)
     {
-        $needs = DB::select('select * from needs');
+        $needs = $request->user()->needs()->get();
         $data = ['needs' => $needs];
         return view('needs.home', $data);
     }
 
     /**
      * 買い物リスト編集フォーム
+     * @param Request $request
      */
-    public function needEdit()
+    public function needEdit(Request $request)
     {
-        $needs = DB::select('select * from needs');
+        $needs = $request->user()->needs()->get();
         $data = ['needs' => $needs];
         return view('needs.update', $data);
     }
@@ -44,7 +47,7 @@ class NeedController extends Controller
         // 入力フォームのバリデーション
         $request->validate([
             'id'=>'required|array',
-            'need_item_name'=>'required|array',
+            'need_item_name.*'=>'required|array',
             'need_item_name.*'=>'between:1,100',
             'quantity.*'=>'digits_between:1,6',
             'date_of_purchase.*'=>'date|after:today'
