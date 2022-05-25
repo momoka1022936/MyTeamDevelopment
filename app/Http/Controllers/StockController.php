@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
 use App\Models\Stock;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redis;
@@ -10,7 +11,7 @@ use Carbon\Carbon;
 use app\Rules\DateFormats;
 
 
-class stocksControllers extends Controller
+class StockController extends Controller
 {
     //
     public function __construct()
@@ -39,13 +40,13 @@ class stocksControllers extends Controller
     }
 
     //登録画面の表示
-    public function stocksRegister()
+    public function register()
     {
         return view('stocks.stocksRegister');
     }
 
     // stocksのテーブルに登録するための機能
-    public function stockCreate(Request $request){
+    public function store(Request $request){
 
         $request->validate([
             'stock_item_name.0' => 'required|max:100|required_with:quantity.0',
@@ -111,13 +112,13 @@ class stocksControllers extends Controller
         }            
     }
 
-    public function stockEdit(){
+    public function edit(){
         $stocks = DB::select('select * from stocks');
         $data = ['stocks' => $stocks];
         return view('stocks.stocksEdit', $data);
     }
 
-    public function stockUpdate(Request $request){
+    public function update(Request $request){
         //編集機能
 
         // バリデーション
@@ -153,7 +154,7 @@ class stocksControllers extends Controller
         return redirect('/stocks');
     }
 
-    public function stockDelete(Request $request){
+    public function delete(Request $request){
     // 削除機能
 
     // チェックボックスが一つもチェックされていない場合、ホーム画面にリダイレクト

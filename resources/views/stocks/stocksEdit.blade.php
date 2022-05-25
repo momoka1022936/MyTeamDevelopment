@@ -28,7 +28,7 @@
         <hr>
         <ul class="nav nav-pills flex-column mb-auto">
             <li class="nav-item">
-                <a href="{{ route('stocksRegister') }}" class="nav-link active" aria-current="page">
+                <a href="{{ route('stocks.register') }}" class="nav-link active" aria-current="page">
                     <svg class="bi me-2" width="16" height="16"></svg>
                     在庫登録画面
                 </a>
@@ -68,7 +68,7 @@
     </div>
     <!-- メイン画面  -->
     <div class="px-0 d-flex col-10 border-left ml-2 row">
-        <form id="stockUpdate" class="col-11 pt-3 form-inline-alignDelete" action="/stockUpdate" method="post">
+        <form id="stockUpdate" class="col-11 pt-3 form-inline-alignDelete" action="{{ route('stocks.update') }}" method="post">
             @csrf
             <!-- 名前の入力 -->
             <div class="col-3 border-right p-0 ">
@@ -128,7 +128,7 @@
             </div>
         </form>
         <!-- チェックボックス -->
-        <form id="stockDelete" action="{{ route('stockDelete') }}"
+        <form id="stockDelete" action="{{ route('stocks.delete') }}"
             class="col-1 pt-3 form-inline-alignDelete border-right" method="post">
             @csrf
             @method('delete')

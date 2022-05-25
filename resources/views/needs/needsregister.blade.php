@@ -25,7 +25,7 @@
         <hr>
         <ul class="nav nav-pills flex-column mb-auto">
             <li class="nav-item mt-4 mt-auto border-0 pt-0">
-                <a href="{{ route('needEdit') }}" class="nav-link active" aria-current="page">
+                <a href="{{ route('needs.edit') }}" class="nav-link active" aria-current="page">
                 <svg class="bi me-2" width="16" height="16"><use xlink:href="#home"/></svg>
                 買い物リスト編集画面
                 </a>

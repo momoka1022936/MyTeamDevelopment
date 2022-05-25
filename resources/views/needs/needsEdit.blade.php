@@ -52,7 +52,7 @@
     </div>
     <!-- メイン画面  -->
     <div class="flex-column-auto px-0 d-flex col-10 border-left ml-2 row">
-        <form id="needUpdate" class="col-11 pt-3 form-inline-alignDelete mb-auto " action="{{ route('needUpdate') }}"
+        <form id="needUpdate" class="col-11 pt-3 form-inline-alignDelete mb-auto " action="{{ route('needs.update') }}"
             method="post">
             @csrf
             @foreach ($needs as $need)
@@ -94,7 +94,7 @@
             </div>
             @endforeach
         </form>
-        <form id="needDelete" action="{{ route('needDelete') }}" class="col-1 pt-3 form-inline-alignDelete border-right"
+        <form id="needDelete" action="{{ route('needs.delete') }}" class="col-1 pt-3 form-inline-alignDelete border-right"
             method="post">
             @csrf
             @method('delete')

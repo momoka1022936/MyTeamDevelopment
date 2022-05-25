@@ -24,13 +24,13 @@
         <hr>
         <ul class="nav nav-pills flex-column mb-auto">
         <li class="nav-item">
-        <a href="{{ route('stocksEdit') }}" class="nav-link active" aria-current="page">
+        <a href="{{ route('stocks.edit') }}" class="nav-link active" aria-current="page">
             <svg class="bi me-2" width="16" height="16"><use xlink:href="#home"/></svg>
             在庫編集画面
             </a>
         </li>
         <li>
-            <a href="{{ route('stocksRegister') }}" class="nav-link active link-dark mt-2">
+            <a href="{{ route('stocks.register') }}" class="nav-link active link-dark mt-2">
             <svg class="bi me-2" width="16" height="16"></svg>
             在庫登録画面へ
             </a>

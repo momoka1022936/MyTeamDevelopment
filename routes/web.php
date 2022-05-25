@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Needs\NeedsregisterControllers;
+// use App\Http\Controllers\Needs\NeedsregisterControllers;
 
 
 /*
@@ -21,28 +21,29 @@ Route::get('/', function () {
 
 Auth::routes();
 Route::get('/logout', [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('/logout');
-// 買い物リスト画面
-Route::get('/home', [App\Http\Controllers\Needs\NeedController::class, 'index'])->name('/home');
-/*買い物リスト登録画面*/
 
-Route::get('/needs/needsregister', [App\Http\Controllers\Needs\NeedsregisterControllers::class, 'needsregister'])->middleware('auth');
-//needsregister.blade.phpで'/needs/store'がpostされるとNeedsregisterControllersに行く、そして'needsregister'（登録画面）が表示される(登録される)
-Route::post('/needs/store', [App\Http\Controllers\Needs\NeedsregisterControllers::class, 'store' ])->name('needs.store');
+// 買い物リスト画面（ホーム）
+Route::get('/home', [App\Http\Controllers\NeedController::class, 'index'])->name('/home');
+// 買い物リスト系
+Route::group(['prefix' => '/needs', 'as' => 'needs.'], function() {
+    // 買い物リスト登録画面
+    Route::get('register', [App\Http\Controllers\NeedController::class, 'register'])->name('register');
+    Route::post('store', [App\Http\Controllers\NeedController::class, 'store' ])->name('store');
+    // 買い物リスト編集画面
+    Route::get('edit', [App\Http\Controllers\NeedController::class, 'edit'])->name('edit');
+    Route::post('update', [App\Http\Controllers\NeedController::class, 'update'])->name('update');
+    Route::delete('delete', [App\Http\Controllers\NeedController::class, 'delete'])->name('delete');
+});
 
-// 買い物リスト編集画面
-Route::get('/needEdit', [App\Http\Controllers\Needs\NeedController::class, 'needEdit'])->name('needEdit');
-Route::post('/needUpdate', [App\Http\Controllers\Needs\NeedController::class, 'needUpdate'])->name('needUpdate');
-Route::delete('/needDelete', [App\Http\Controllers\Needs\NeedController::class, 'needDelete'])->name('needDelete');
-
-
-// 在庫管理画面
-Route::get('/stocks', [App\Http\Controllers\stocksControllers::class, 'stocks'])->name('stocks');
-
-// 在庫登録画面
-Route::get('/stocksRegister', [App\Http\Controllers\stocksControllers::class, 'stocksRegister'])->name('stocksRegister');
-Route::post('/stockCreate',[App\Http\Controllers\stocksControllers::class,'stockCreate']);
-
-// 在庫編集画面
-Route::get('/stockEdit',[App\Http\Controllers\stocksControllers::class,'stockEdit'])->name('stocksEdit');
-Route::post('/stockUpdate',[App\Http\Controllers\stocksControllers::class, 'stockUpdate'])->name('stockUpdate');
-Route::delete('/stockDelete',[App\Http\Controllers\stocksControllers::class, 'stockDelete'])->name('stockDelete');
+// 在庫一覧画面
+Route::get('/stocks', [App\Http\Controllers\StockController::class, 'stocks'])->name('stocks');
+// 在庫系
+Route::group(['prefix' => '/stocks', 'as' => 'stocks.'], function() {
+    // 在庫登録画面
+    Route::get('Register', [App\Http\Controllers\StockController::class, 'register'])->name('register');
+    Route::post('store',[App\Http\Controllers\StockController::class,'store'])->name('store');
+    // 在庫編集画面
+    Route::get('edit',[App\Http\Controllers\StockController::class,'edit'])->name('edit');
+    Route::post('update',[App\Http\Controllers\StockController::class, 'update'])->name('update');
+    Route::delete('delete',[App\Http\Controllers\StockController::class, 'delete'])->name('delete');
+});

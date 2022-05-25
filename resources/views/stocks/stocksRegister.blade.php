@@ -29,7 +29,7 @@
         <hr>
         <ul class="nav nav-pills flex-column mb-auto">
         <li class="nav-item">
-            <a href="{{ route('stocksEdit') }}" class="nav-link active" aria-current="page">
+            <a href="{{ route('stocks.edit') }}" class="nav-link active" aria-current="page">
             <svg class="bi me-2" width="16" height="16"></svg>
             在庫編集画面
             </a>
@@ -68,7 +68,7 @@
 
     <!-- メイン画面 -->
     <div class="flex-column px-0 d-flex col-10 border-left ml-2 row">
-        <form  id="path" class="pt-3 form-inline-alignDelete" action="/stockCreate" method="post">
+        <form  id="path" class="pt-3 form-inline-alignDelete" action="{{ route('stocks.store') }}" method="post">
 
             @csrf
             <!-- 名前の入力 -->

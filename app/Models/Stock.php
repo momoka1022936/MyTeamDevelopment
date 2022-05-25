@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
-use App\Http\Controllers\stocksControllers;
+use App\Http\Controllers\StockControllers;
 use Carbon\Carbon;
 
 class Stock extends Model
