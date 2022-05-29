@@ -20,15 +20,17 @@ class StockController extends Controller
         $this->middleware('auth');
     }
     
-    // stockテーブルのレコードを取得する処理
-    //selectは取得するカラムを指定することができる。この場合はすべて取得している。
+    /**
+     * 在庫一覧
+     */
     public function stocks()
     {
-
+        
         $stocks = DB::select('select * from stocks');
         $data = ['stocks' => $stocks];
+
         // ここで一週間後の日付を取得
-        $week1 = date("Y-m-d",strtotime("+1 week"));
+        $week1 = date("Y-m-d", strtotime("+1 week"));
         // ここで、stock_expirationのカラムのデータをすべて取得する。
         $stock_expiration = array_column($stocks, 'stock_expiration');
         // ここで、quantityのカラムのデータをすべて取得する。
@@ -39,13 +41,19 @@ class StockController extends Controller
         return view('stocks.stocks', compact('week1','stock_expiration','alert_number', 'quantity') ,$data);
     }
 
-    //登録画面の表示
+    /**
+     * 在庫登録フォーム
+     */
     public function register()
     {
         return view('stocks.stocksRegister');
     }
 
-    // stocksのテーブルに登録するための機能
+    /**
+     * 在庫登録機能
+     * 
+     * @param Request $request
+     */
     public function store(Request $request){
 
         $request->validate([
@@ -87,7 +95,6 @@ class StockController extends Controller
             'stock_expiration.11' => 'date|nullable|after:today|required_with:stock_item_name.11,quantity.11',
             'alert_number.*' => 'nullable|max:6',
         ]);
-
         
         // ここでフォームの内容を取得している
         // ここで、tokenを削除
@@ -112,14 +119,21 @@ class StockController extends Controller
         }            
     }
 
+    /**
+     * 在庫編集フォーム
+     */
     public function edit(){
         $stocks = DB::select('select * from stocks');
         $data = ['stocks' => $stocks];
         return view('stocks.stocksEdit', $data);
     }
 
+    /**
+     * 在庫編集機能
+     * 
+     * @param Request $request
+     */
     public function update(Request $request){
-        //編集機能
 
         // バリデーション
         $i = 0;
@@ -154,8 +168,12 @@ class StockController extends Controller
         return redirect('/stocks');
     }
 
+    /**
+     * 在庫削除機能
+     * 
+     * @param Request $request
+     */
     public function delete(Request $request){
-    // 削除機能
 
     // チェックボックスが一つもチェックされていない場合、ホーム画面にリダイレクト
     if (!isset($request->id)) {

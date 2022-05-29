@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Need;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class NeedController extends Controller
 {
@@ -17,6 +18,7 @@ class NeedController extends Controller
 
     /**
      * 買い物リスト一覧
+     * 
      * @param Request $request
      */
     public function index(Request $request)
@@ -26,39 +28,37 @@ class NeedController extends Controller
         return view('needs.home', $data);
     }
 
+    /**
+     * 買い物リスト登録フォーム
+     * 
+     * @param Request $request
+     */
     public function register(Request $request)
     {
-        /*$needs_createはデータベースのneedsから全てを取得,上から順に新しく登録した物が表示*/ 
+        // $needs_createはデータベースのneedsから全てを取得,上から順に新しく登録した物が表示
         $needs_register = $request->user()->needs()->orderBy('created_at', 'desc')->get();
-        /*needs.needsregisterに渡す、関数$needsregisterが使えるようにする*/
-        return view('needs.needsRegister',['needs'=>$needs_register]);
+        // viewsに表示用の変数を渡す
+        return view('needs.needsRegister',[
+            'needs' => $needs_register
+        ]);
     }
 
-
-
-   
-
-
     /**
-     * Store a newly created resource in storage.
+     * 買い物リスト登録機能
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param  Request  $request
+     * @return Response
      */
-    /**request*/
     public function store(Request $request){
-        /**バリデーション（文字数100，個数は6桁まで、期限は過去不可）*/
+        // バリデーション（文字数100，個数は6桁まで、期限は過去不可）
         $request->validate([
             'need_item_name'=>'required | max:100',
             'quantity'=>'digits_between:1,6',
             'date_of_purchase'=>'date|after:today'
         ]);
 
-    // /**５３Needsregisterの空データをつくる。 */
-    // $needs= new Need();
-    // /**request allで全部のデータ取得,$fillable（Needsregister.php）だけ取得そして保存 */
-    // $needs->fill($request->all())->save();
-    $request->user()->needs()->create([
+        // 登録
+        $request->user()->needs()->create([
         'need_item_name' => $request->need_item_name,
         'quantity' => $request->quantity,
         'date_of_purchase' => $request->date_of_purchase
@@ -67,30 +67,10 @@ class NeedController extends Controller
     return redirect('/needs/register');
     }
    
-    public function show_by_user($id)
-    {
-        $user = Auth::user();
-        $id = Auth::id();
-
-        $user = User::find($id); 
-        $records = Record::where('user_id',$user->id)->sortable()->get(); 
-
-
-        if($user->id == $id){
-
-        return view('record.showbyuser', [
-            'user_name' => $user->name, 
-            'records' => $records, 
-        ]);
-        }else{
-            return redirect('/login');
-        }
-
-    }
-
 
     /**
      * 買い物リスト編集フォーム
+     * 
      * @param Request $request
      */
     public function edit(Request $request)
@@ -102,6 +82,8 @@ class NeedController extends Controller
 
     /**
      * 買い物リスト編集
+     * 
+     * @param Request $request
      */
     public function update(Request $request)
     {
@@ -113,7 +95,6 @@ class NeedController extends Controller
             'need_item_name.*'=>'between:1,100',
             'quantity.*'=>'digits_between:1,6',
             'date_of_purchase.*'=>'date|after:today'
-
         ]);
         
         // 0番目から順番に配列の中身を見ていく
@@ -130,8 +111,7 @@ class NeedController extends Controller
             $need->date_of_purchase = $request->date_of_purchase[$id];
 
             // 書き換えた値を保存
-            $need->save();
-            
+            $need->save();            
            
             // 次の順番の配列へ
             $i++;
@@ -142,16 +122,20 @@ class NeedController extends Controller
 
     /**
      * 買い物リスト削除
+     * 
+     * @param Request $request
      */
     public function delete(Request $request)
     {
         
         // チェックボックスにチェックがないままでclickするとhomeに遷移
         try {
+            // 可能性のあるケース
             $request->validate([
                 'id'=>'required',
             ]);
         } catch (\Exception $e) {
+            
             return redirect('/home');
         }
         
