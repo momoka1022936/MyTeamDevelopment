@@ -23,8 +23,9 @@ class NeedController extends Controller
     public function index(Request $request)
     {
         $needs = $request->user()->needs()->orderBy('created_at', 'desc')->get();
-        $data = ['needs' => $needs];
-        return view('needs.home', $data);
+        return view('needs.home', [
+            'needs' => $needs
+        ]);
     }
 
     /**
@@ -75,8 +76,9 @@ class NeedController extends Controller
     public function edit(Request $request)
     {
         $needs = $request->user()->needs()->get();
-        $data = ['needs' => $needs];
-        return view('needs.needsEdit', $data);
+        return view('needs.needsEdit', [
+            'needs' => $needs
+        ]);
     }
 
     /**

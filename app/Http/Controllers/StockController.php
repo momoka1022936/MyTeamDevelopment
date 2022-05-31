@@ -5,9 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Stock;
-use Illuminate\Support\Facades\Redis;
-use Carbon\Carbon;
-use app\Rules\DateFormats;
 
 
 class StockController extends Controller
@@ -28,18 +25,14 @@ class StockController extends Controller
     {
         
         $stocks = $request->user()->stocks()->orderBy('created_at', 'desc')->get();
-        $data = ['stocks' => $stocks];
 
         // ここで一週間後の日付を取得
         $week1 = date("Y-m-d", strtotime("+1 week"));
-        // ここで、stock_expirationのカラムのデータをすべて取得する。
-        $stock_expiration = array_column($stocks, 'stock_expiration');
-        // ここで、quantityのカラムのデータをすべて取得する。
-        $quantity  = array_column($stocks, 'quantity');
-        // ここで、alert_numberのカラムのデータをすべて取得する。
-        $alert_number  = array_column($stocks, 'alert_number');
 
-        return view('stocks.stocks', compact('week1','stock_expiration','alert_number', 'quantity') ,$data);
+        return view('stocks.stocks', [
+            'week1' => $week1,
+            'stocks' => $stocks,
+        ]);
     }
 
     /**
@@ -105,9 +98,8 @@ class StockController extends Controller
             if(is_null($request->stock_item_name[$i])){
                 return redirect('/stocks');
             }else{
-                unset($request['_token']);
                 $stock = new stock();
-                $stock->user_id = $stock->user_id = auth()->id();
+                $stock->user_id = auth()->id();
                 $stock->stock_item_name = $request->stock_item_name[$i];
                 $stock->quantity = $request->quantity[$i];
                 $stock->alert_number = $request->alert_number[$i];
@@ -127,8 +119,9 @@ class StockController extends Controller
      */
     public function edit(Request $request){
         $stocks = $request->user()->stocks()->orderBy('created_at', 'desc')->get();
-        $data = ['stocks' => $stocks];
-        return view('stocks.stocksEdit', $data);
+        return view('stocks.stocksEdit', [
+            'stocks' => $stocks
+        ]);
     }
 
     /**
