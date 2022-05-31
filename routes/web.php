@@ -40,7 +40,7 @@ Route::get('/stocks', [App\Http\Controllers\StockController::class, 'stocks'])->
 // 在庫系
 Route::group(['prefix' => '/stocks', 'as' => 'stocks.'], function() {
     // 在庫登録画面
-    Route::get('Register', [App\Http\Controllers\StockController::class, 'register'])->name('register');
+    Route::get('register', [App\Http\Controllers\StockController::class, 'register'])->name('register');
     Route::post('store',[App\Http\Controllers\StockController::class,'store'])->name('store');
     // 在庫編集画面
     Route::get('edit',[App\Http\Controllers\StockController::class,'edit'])->name('edit');

@@ -41,6 +41,8 @@ class User extends Authenticatable
     }
 
     public function stocks(){
-        return $this->hasMany('App\Stock');
+
+        return $this->hasMany(Stock::class);
+        
     }
 }

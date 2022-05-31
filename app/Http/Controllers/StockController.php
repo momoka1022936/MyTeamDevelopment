@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Stock;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redis;
 use Carbon\Carbon;
 use app\Rules\DateFormats;
@@ -22,11 +21,13 @@ class StockController extends Controller
     
     /**
      * 在庫一覧
+     * 
+     * @param Request $request
      */
-    public function stocks()
+    public function stocks(Request $request)
     {
         
-        $stocks = DB::select('select * from stocks');
+        $stocks = $request->user()->stocks()->orderBy('created_at', 'desc')->get();
         $data = ['stocks' => $stocks];
 
         // ここで一週間後の日付を取得
@@ -121,9 +122,11 @@ class StockController extends Controller
 
     /**
      * 在庫編集フォーム
+     * 
+     * @param Request $request
      */
-    public function edit(){
-        $stocks = DB::select('select * from stocks');
+    public function edit(Request $request){
+        $stocks = $request->user()->stocks()->orderBy('created_at', 'desc')->get();
         $data = ['stocks' => $stocks];
         return view('stocks.stocksEdit', $data);
     }

@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Need;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
 class NeedController extends Controller
@@ -23,7 +22,7 @@ class NeedController extends Controller
      */
     public function index(Request $request)
     {
-        $needs = $request->user()->needs()->get();
+        $needs = $request->user()->needs()->orderBy('created_at', 'desc')->get();
         $data = ['needs' => $needs];
         return view('needs.home', $data);
     }
