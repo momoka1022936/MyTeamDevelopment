@@ -90,21 +90,19 @@ class StockController extends Controller
             'alert_number.*' => 'nullable|max:6',
         ]);
         
-        // ここでフォームの内容を取得している
-        // ここで、tokenを削除
         $i = 0;
-
+        // 一度に入力できるフォームの数(12個)だけfor文を回す
         for($request->stock_item_name[$i]; $i < 12; $i++){
             if(is_null($request->stock_item_name[$i])){
                 return redirect('/stocks');
-            }else{
-                $stock = new stock();
-                $stock->user_id = auth()->id();
-                $stock->stock_item_name = $request->stock_item_name[$i];
-                $stock->quantity = $request->quantity[$i];
-                $stock->alert_number = $request->alert_number[$i];
-                $stock->stock_expiration = $request->stock_expiration[$i];
-                $stock->save();
+            } else {
+                // 登録
+                $request->user()->stocks()->create([
+                    'stock_item_name' => $request->stock_item_name[$i],
+                    'quantity' => $request->quantity[$i],
+                    'alert_number' => $request->alert_number[$i],
+                    'stock_expiration' => $request->stock_expiration[$i],   
+                ]);
                 if($i == 11){
                     return redirect('/stocks');
                 }
@@ -132,15 +130,23 @@ class StockController extends Controller
     public function update(Request $request){
 
         // バリデーション
+        // idをバリデート
+        $this->validate($request, [
+            'id' => "required|array"
+        ]);
+
         $i = 0;
-        foreach ($request->id as $id) {
+        for ($i = 0; $i < count($request->id); $i++) {
             // 配列として送られてきた各カラムの値を順番にチェック
             $this->validate($request, [                       
                 "stock_item_name.{$i}" => "required|max:100",
                 "quantity.{$i}" => "required|max:6",
                 "alert_number.{$i}" => 'nullable|max:6',
                 "stock_expiration.{$i}" => 'required|date|after:today',
-            ], [], [                
+            ], [
+                // エラーメッセージのカスタマイズ
+            ], [ 
+                // attributesを上書き               
                 "stock_item_name.{$i}" => '在庫名',
                 "quantity.{$i}" => '在庫',
                 "alert_number.{$i}" => 'アラートまでの個数',
@@ -149,15 +155,16 @@ class StockController extends Controller
             $i++;
         }
         
-        // 更新
         $i = 0;
+        // $idの数だけ順番に更新
         foreach($request->id as $id){
             $stock = Stock::find($id);
-            $stock->stock_item_name = $request->stock_item_name[$i];
-            $stock->quantity = $request->quantity[$i];
-            $stock->alert_number = $request->alert_number[$i];
-            $stock->stock_expiration = $request->stock_expiration[$i];
-            $stock->save();
+            $stock->update([
+                'stock_item_name' => $request->stock_item_name[$i],
+                'quantity' => $request->quantity[$i],
+                'alert_number' => $request->alert_number[$i],
+                'stock_expiration' => $request->stock_expiration[$i],
+            ]);           
             $i++;
         }
             

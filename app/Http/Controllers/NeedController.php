@@ -105,15 +105,12 @@ class NeedController extends Controller
 
             // $idでレコードを1件取得
             $need = Need::find($id);
-            
-            // 取得したレコードの各カラムの値を、リクエストで取得した値に書き換える
-            $need->need_item_name = $request->need_item_name[$id];
-            $need->quantity = $request->quantity[$id];
-            $need->date_of_purchase = $request->date_of_purchase[$id];
-
-            // 書き換えた値を保存
-            $need->save();            
-           
+            // 作成
+            $request->user()->need()->update([
+            'need_item_name' => $request->need_item_name[$id],
+            'quantity' => $request->quantity[$id],
+            'date_of_purchase' => $request->date_of_purchase[$id],
+            ]);
             // 次の順番の配列へ
             $i++;
         }
@@ -135,14 +132,11 @@ class NeedController extends Controller
             $request->validate([
                 'id'=>'required',
             ]);
-        } catch (\Exception $e) {
-            
+        } catch (\Exception $e) {            
             return redirect('/home');
         }
-        
 
         foreach ($request->id as $id) {
-
             // checkboxからidを取得してレコードを探す
             $need = Need::find($id);
             // 削除
