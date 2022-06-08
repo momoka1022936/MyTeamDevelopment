@@ -16,8 +16,8 @@ class CreateStocksTable extends Migration
         Schema::create('stocks', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('user_id');
-            $table->string('stock_item_name', 100);
-            $table->unsignedDouble('quantity', 9, 3);
+            $table->string('stock_item_name', 25);
+            $table->unsignedDouble('quantity', 5, 1);
             $table->date('stock_expiration');
             $table->timestamps();
         });

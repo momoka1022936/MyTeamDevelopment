@@ -15,7 +15,7 @@ class AddAlertToStocksTable extends Migration
     {
         Schema::table('stocks', function (Blueprint $table) {
             //
-            $table->integer('alert_number')->nullable();
+            $table->unsignedDouble('alert_number', 5, 1)->nullable();
         });
     }
 
