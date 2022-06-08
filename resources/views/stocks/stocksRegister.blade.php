@@ -87,7 +87,7 @@
             <div class="minus col-2  border-right  p-0">
             @for($i = 0; $i < 12; $i++)
                 <ul class="border-bottom p-0 mx-2">
-                    <input class="w-100 mb-2 minus" type="number" name="quantity[]" pattern="^[0-9]+$" value="{{ old('quantity.'.$i) }}">
+                    <input class="w-100 mb-2 minus" name="quantity[]" value="{{ old('quantity.'.$i) }}">
                     @error('quantity.'.$i)
                         <span class="invalid-feedback d-block fs-1">{{ $message }}</span>
                     @enderror
@@ -99,7 +99,7 @@
             <div class="minus  col-3 m-0 border-right p-0">
             @for($i = 0; $i < 12; $i++)
                 <ul class="border-bottom p-0  mx-2">
-                    <input class="w-100 mb-2 minus" type="number" name="alert_number[]" pattern="^[0-9]+$" value="{{ old('alert_number.'.$i) }}">
+                    <input class="w-100 mb-2 minus" name="alert_number[]" value="{{ old('alert_number.'.$i) }}">
                     @error('alert_number.'.$i)
                         <span class="invalid-feedback d-block fs-1">{{ $message }}</span>
                     @enderror
@@ -111,7 +111,7 @@
             <div class="col-4 mb-2 pb-3 border-right p-0">
             @for($i = 0; $i < 12; $i++)
                 <ul class="border-bottom p-0 mx-2">
-                    <input class="w-100 mb-2" type="date" name="stock_expiration[]" value="{{ old('stock_expiration.'.$i) }}" max="9999-12-31" >
+                    <input class="w-100 mb-2" type="date" name="stock_expiration[]" value="{{ old('stock_expiration.'.$i) }}">
                     @error('stock_expiration.'.$i)
                         <span class="invalid-feedback d-block fs-1">{{ $message }}</span>
                     @enderror
@@ -121,18 +121,4 @@
 
         </form>
     </div>
-<!-- これは個数のマイナス入力が出来ないようにするための機能 -->
-<script>
-    window.addEventListener('DOMContentLoaded', ()=>{
-    document.querySelectorAll('.minus').forEach(x=>{
-        x.addEventListener('input',()=>{
-        var reg=/[^0-9]/g;
-        var val=x.value;
-        if(reg.test(val)){
-            x.value=val.replace(reg,'');
-        }
-        });
-    });
-    });
-</script>
 @endsection

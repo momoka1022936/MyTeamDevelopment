@@ -50,10 +50,10 @@ class NeedController extends Controller
      * @return Response
      */
     public function store(Request $request){
-        // バリデーション（文字数100，個数は6桁まで、期限は過去不可）
+        // バリデーション（文字数25，個数は4桁まで、期限は過去不可）
         $request->validate([
-            'need_item_name'=>'required | max:100',
-            'quantity'=>'digits_between:1,6',
+            'need_item_name'=>'required|max:25',
+            'quantity'=>'required|numeric|min:0|digits_between:1,4',
             'date_of_purchase'=>'date|after:today'
         ]);
 
@@ -93,8 +93,8 @@ class NeedController extends Controller
         $request->validate([
             'id'=>'required|array',
             'need_item_name.*'=>'required|array',
-            'need_item_name.*'=>'between:1,100',
-            'quantity.*'=>'digits_between:1,6',
+            'need_item_name.*'=>'required|max:25',
+            'quantity.*'=>'required|numeric|min:0|digits_between:1,4',
             'date_of_purchase.*'=>'date|after:today'
         ]);
         
@@ -106,7 +106,7 @@ class NeedController extends Controller
             // $idでレコードを1件取得
             $need = Need::find($id);
             // 作成
-            $request->user()->need()->update([
+            $need->update([
             'need_item_name' => $request->need_item_name[$id],
             'quantity' => $request->quantity[$id],
             'date_of_purchase' => $request->date_of_purchase[$id],

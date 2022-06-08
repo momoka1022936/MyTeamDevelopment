@@ -21,7 +21,7 @@
 <div class="container-fluid m-0 row">
 
     <!-- サイドメニュー -->
-    <div class="d-flex flex-column flex-shrink-0  p-3 col-2" style=" height:600px; border-none">
+    <div class="d-flex flex-column flex-shrink-0  p-3 col-2" style=" height:600px; border:none;">
         <hr>
         <ul class="nav nav-pills flex-column mb-auto">
             <li class="nav-item mt-4 mt-auto border-0 pt-0">
@@ -74,8 +74,8 @@
 
             <div class="col-4 border-right p-0  ">
                     <!-- これで個数を登録できる。input_fieldで、マイナス入力が不可 -->
-                <input type="number" min="0" class="mx-auto px4 my-1 input_field" name="quantity" required="required">
-                    <!-- バリデーション(6桁を超えると登録できなくする) -->
+                <input class="mx-auto px4 my-1" name="quantity" required="required">
+                    <!-- バリデーション(4桁を超えると登録できなくする) -->
                 @if($errors->has('quantity'))
                 <p class="text-danger">{{$errors->first('quantity')}} </p>
                 @endif
@@ -106,20 +106,6 @@
         </form>
     </div> 
 
-    <!-- これは個数のマイナス入力が出来ないようにするための機能 -->
-    <script>
-        window.addEventListener('DOMContentLoaded', ()=>{
-        document.querySelectorAll('.input_field').forEach(x=>{
-            x.addEventListener('input',()=>{
-            var reg=/[^0-9]/g;
-            var val=x.value;
-            if(reg.test(val)){
-                x.value=val.replace(reg,'');
-            }
-            });
-        });
-        });
-    </script>
 </div>
 
 <!-- 入力フォームの下を調整するため// -->

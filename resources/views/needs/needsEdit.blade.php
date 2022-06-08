@@ -72,7 +72,7 @@
             <div class="minus col-3 border-right  p-0">
                
                 <ul class="border-bottom p-0 mx-3">
-                    <input class="w-100 mb-2 minus" type="number" name="quantity[{{$need->id}}]" value="{{ $need->quantity }}">
+                    <input class="w-100 mb-2 minus" name="quantity[{{$need->id}}]" value="{{ $need->quantity }}">
                     <!-- 6桁を超えるとエラー表示 -->
                     @if($errors->has("quantity.$need->id"))
                         <p class="text-danger">{{$errors->first("quantity.$need->id")}} </p>
@@ -85,10 +85,10 @@
 
                 <ul class="border-bottom p-0 mx-2">
                     <input class="w-100 mb-2 mt-0" type="date" name="date_of_purchase[{{$need->id}}]"
-                        value="{{ $need->date_of_purchase }}">
+                        value="{{ $need->date_of_purchase }}" required>
                     <!-- 過去を入力するとエラー表示 -->    
                     @if($errors->has("date_of_purchase.$need->id"))
-                        <p class="text-danger">{{$errors->first("date_of_purchase.$need->id")}} </p>
+                        <p class="text-danger">{{$errors->first("date_of_purchase.$need->id")}}</p>
                     @endif
                 </ul>
             </div>
@@ -109,18 +109,4 @@
             </div>   
         </form>
     </div>
-    <!-- これは個数のマイナス入力が出来ないようにするための機能 -->
-    <script>
-    window.addEventListener('DOMContentLoaded', () => {
-        document.querySelectorAll('.minus').forEach(x => {
-            x.addEventListener('input', () => {
-                var reg = /[^0-9]/g;
-                var val = x.value;
-                if (reg.test(val)) {
-                    x.value = val.replace(reg, '');
-                }
-            });
-        });
-    });
-    </script>
     @endsection
