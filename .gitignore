@@ -14,7 +14,6 @@ Homestead.json
 package-lock.json
 Homestead.yaml
 npm-debug.log
-resources/views/needs/needsRegister.blade.php
 yarn-error.log
 /.idea
 /.vscode
