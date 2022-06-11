@@ -36,10 +36,10 @@ class NeedController extends Controller
     public function register(Request $request)
     {
         // $needs_createはデータベースのneedsから全てを取得,上から順に新しく登録した物が表示
-        $needs_register = $request->user()->needs()->orderBy('created_at', 'desc')->get();
+        $needs = $request->user()->needs()->orderBy('created_at', 'desc')->get();
         // viewsに表示用の変数を渡す
         return view('needs.needsRegister',[
-            'needs' => $needs_register
+            'needs' => $needs
         ]);
     }
 
