@@ -119,8 +119,9 @@
                 <?php $i = 0; ?>
                 @foreach ($stocks as $stock)
                 <ul class="border-bottom p-0 mx-2">
+                    <?php $expiration = $stock->stock_expiration ?>
                     <input class="w-100 mb-2" type="date" name="stock_expiration[]"
-                        value="{{ $stock->stock_expiration }}" required>
+                        value="<?php echo $expiration->format('Y-m-d') ?>" required>
                     @if($errors->has("stock_expiration.$i"))
                     <p class="text-danger">{{$errors->first("stock_expiration.$i")}} </p>
                     @endif
