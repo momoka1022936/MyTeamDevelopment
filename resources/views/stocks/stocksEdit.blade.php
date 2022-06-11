@@ -77,8 +77,8 @@
                 @foreach ($stocks as $stock)
                 <ul class="border-bottom p-0 mx-2">
                     <input class="w-100 mb-2" type="hidden" name="id[]" value="{{$stock->id}}">
-                    <input class="w-100 mb-2" type="text" name="stock_item_name[]" value="{{ $stock->stock_item_name }}"
-                        required>
+                    <input class="w-100 mb-2" type="text" name="stock_item_name[]" value="{{ $stock->stock_item_name }}" required>
+                    <!-- バリデーション(25文字超えると登録できなくする) -->
                     @if($errors->has("stock_item_name.{$i}"))
                     <p class="text-danger">{{$errors->first("stock_item_name.{$i}")}} </p>
                     @endif
@@ -92,6 +92,7 @@
                 @foreach ($stocks as $stock)
                 <ul class="border-bottom p-0 mx-2">
                     <input class="w-100 mb-2 minus" name="quantity[]" value="{{ $stock->quantity }}" required>
+                    <!-- バリデーション(4桁超えると登録できなくする) -->
                     @if($errors->has("quantity.{$i}"))
                     <p class="text-danger">{{$errors->first("quantity.{$i}")}} </p>
                     @endif
@@ -105,6 +106,7 @@
                 @foreach ($stocks as $stock)
                 <ul class="border-bottom p-0  mx-2">
                     <input class="w-100 mb-2 minus" name="alert_number[]" value="{{ $stock->alert_number }}">
+                    <!-- バリデーション(4桁超えると登録できなくする) -->
                     @if($errors->has("alert_number.{$i}"))
                     <p class="text-danger">{{$errors->first("alert_number.{$i}")}} </p>
                     @endif

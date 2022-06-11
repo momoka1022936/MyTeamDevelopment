@@ -63,8 +63,7 @@
             <div class="col-4 border-right p-0 ">
                 <ul class="border-bottom p-0 mx-3">
                     <input class="w-100 mb-2" type="hidden" name="id[{{$need->id}}]" value="{{ $need->id }}">
-                    <input class="w-100 mb-2" type="text" name="need_item_name[{{$need->id}}]"
-                        value="{{ $need->need_item_name }}">
+                    <input class="w-100 mb-2" type="text" name="need_item_name[{{$need->id}}]" value="{{ $need->need_item_name }}" required>
                     <!-- 25文字超えるとエラー表示 -->
                     @if($errors->has("need_item_name.$need->id"))
                     <p class="text-danger">{{$errors->first("need_item_name.$need->id")}} </p>
@@ -76,7 +75,7 @@
             <div class="minus col-3 border-right  p-0">
 
                 <ul class="border-bottom p-0 mx-3">
-                    <input class="w-100 mb-2 minus" name="quantity[{{$need->id}}]" value="{{ $need->quantity }}">
+                    <input class="w-100 mb-2 minus" name="quantity[{{$need->id}}]" value="{{ $need->quantity }}" required>
                     <!-- 4桁を超えるとエラー表示 -->
                     @if($errors->has("quantity.$need->id"))
                     <p class="text-danger">{{$errors->first("quantity.$need->id")}} </p>
@@ -90,7 +89,7 @@
                 <ul class="border-bottom p-0 mx-2">
                     <input class="w-100 mb-2 mt-0" type="date" name="date_of_purchase[{{$need->id}}]"
                         value="{{ $need->date_of_purchase }}" required>
-                    <!-- 過去を入力するとエラー表示 -->
+                    <!-- 今日以前の日付を入力するとエラー表示 -->
                     @if($errors->has("date_of_purchase.$need->id"))
                     <p class="text-danger">{{$errors->first("date_of_purchase.$need->id")}}</p>
                     @endif

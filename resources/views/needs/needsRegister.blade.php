@@ -58,8 +58,8 @@
                 <input type="hidden" class="mx-5 px-4" name="user_id" value="1">
                 
                     <!-- これで名前を登録できる。requiredで、未入力時エラー表示される -->
-                <input type="text" class="mx-auto px-2 my-1" name="need_item_name" value="" required="required">
-                    <!-- バリデーション(100文字超えると登録できなくする) -->
+                <input type="text" class="mx-auto px-2 my-1" name="need_item_name" required>
+                    <!-- バリデーション(25文字超えると登録できなくする) -->
                 @if($errors->has('need_item_name'))
                 <p class="text-danger">{{$errors->first('need_item_name')}} </p>
                 @endif
@@ -74,7 +74,7 @@
 
             <div class="col-4 border-right p-0  ">
                     <!-- これで個数を登録できる。input_fieldで、マイナス入力が不可 -->
-                <input class="mx-auto px4 my-1" name="quantity" required="required">
+                <input class="mx-auto px4 my-1" name="quantity" required>
                     <!-- バリデーション(4桁を超えると登録できなくする) -->
                 @if($errors->has('quantity'))
                 <p class="text-danger">{{$errors->first('quantity')}} </p>
@@ -90,8 +90,8 @@
 
             <div class="col-4 border-right p-0 ">
                 <!-- これで期限を登録できる。 -->
-                <input type="date" class="mx-auto px-4 my-1" name="date_of_purchase" required="required">
-                <!-- バリデーション（過去の日付の登録ができなくなる）-->
+                <input type="date" class="mx-auto px-4 my-1" name="date_of_purchase" required>
+                <!-- バリデーション（今日以前の日付の登録ができなくなる）-->
                 @if($errors->has('date_of_purchase'))
                 <p class="text-danger">{{$errors->first('date_of_purchase')}} </p>
                 @endif

@@ -75,8 +75,9 @@
             <div class="col-3 border-right p-0 ">
                 @for($i = 0; $i < 12; $i++)
                     <ul class="border-bottom p-0   mx-2">
-                        <input class="w-100 mb-2" type="text" name="stock_item_name[]" value="{{ old('stock_item_name.'.$i) }}">
-                        <input form="path" type="hidden" name="user_id[]">
+                    <input form="path" type="hidden" name="user_id[]">
+                        <input class="w-100 mb-2" type="text" name="stock_item_name[]" value="{{ old('stock_item_name.'.$i) }}" required>
+                        <!-- バリデーション(25文字超えると登録できなくする) -->
                         @error('stock_item_name.'.$i)
                           <span class="invalid-feedback d-block fs-1">{{ $message }}</span>
                         @enderror
@@ -87,7 +88,8 @@
             <div class="minus col-2  border-right  p-0">
             @for($i = 0; $i < 12; $i++)
                 <ul class="border-bottom p-0 mx-2">
-                    <input class="w-100 mb-2 minus" name="quantity[]" value="{{ old('quantity.'.$i) }}">
+                    <input class="w-100 mb-2 minus" name="quantity[]" value="{{ old('quantity.'.$i) }}" required>
+                    <!-- バリデーション(4桁超えると登録できなくする) -->
                     @error('quantity.'.$i)
                         <span class="invalid-feedback d-block fs-1">{{ $message }}</span>
                     @enderror
@@ -100,6 +102,7 @@
             @for($i = 0; $i < 12; $i++)
                 <ul class="border-bottom p-0  mx-2">
                     <input class="w-100 mb-2 minus" name="alert_number[]" value="{{ old('alert_number.'.$i) }}">
+                    <!-- バリデーション(4桁超えると登録できなくする) -->
                     @error('alert_number.'.$i)
                         <span class="invalid-feedback d-block fs-1">{{ $message }}</span>
                     @enderror
@@ -111,7 +114,7 @@
             <div class="col-4 mb-2 pb-3 border-right p-0">
             @for($i = 0; $i < 12; $i++)
                 <ul class="border-bottom p-0 mx-2">
-                    <input class="w-100 mb-2" type="date" name="stock_expiration[]" value="{{ old('stock_expiration.'.$i) }}">
+                    <input class="w-100 mb-2" type="date" name="stock_expiration[]" value="{{ old('stock_expiration.'.$i) }}" required>
                     @error('stock_expiration.'.$i)
                         <span class="invalid-feedback d-block fs-1">{{ $message }}</span>
                     @enderror
