@@ -63,7 +63,7 @@
         <ul class="nav nav-pills flex-column mb-auto">
             <!-- これで登録された個数をすべて表示することができる。 -->
             @foreach ($stocks as $stock)
-                <!-- 個数が残り少なくなる(alert_numberを下回る)と、個数が赤く表示される -->
+                <!-- 個数が残り少なくなる(alert_number以下になる)と、個数が赤く表示される -->
                 @if($stock->quantity <= $stock->alert_number)
                     <li class="nav-item text-center  mb-3 border-bottom text-red">{{ $stock->quantity }}</li>
                 @else
@@ -76,7 +76,7 @@
         <ul class="nav nav-pills flex-column mb-auto">
             <!-- これで登録された期限をすべて表示することができる。 -->
             @foreach ($stocks as $stock)
-            <!-- 期限まで1週間を切ると、日付が赤く表示される -->
+            <!-- 期限まで1週間以内になると、日付が赤く表示される -->
                 @if ($week1 >= $stock->stock_expiration)
                     <li class="nav-item text-center  mb-3 border-bottom text-red">{{ $stock->stock_expiration->format('Y-m-d') }}</li>
                 @else

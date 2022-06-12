@@ -13,7 +13,7 @@
                 <span class="h2 text-center">在庫</span>
             </div>
             <div class="align-items-center mb-3 mb-md-0 me-md-auto flex-column d-flex col-3">
-                <span class="h2 text-center">アラートまでの<br>個数</span>
+                <span class="h2 text-center">この個数以下の時<br>在庫数を赤く表示</span>
             </div>
             <div class="align-items-center mb-3 mb-md-0 me-md-auto flex-column d-flex col-3">
                 <span class="h2 text-center">期限</span>
