@@ -12,7 +12,7 @@
 ### web上で使用する場合
 
 1．下記のURLからアクセスしてください。  
-https://my-stocksystem.herokuapp.com/  
+https://my-stocksystem.herokuapp.com/login  
 2．テストアカウントでログインし、お試しください。  
 
 ### インストールしてローカルで使用する場合
