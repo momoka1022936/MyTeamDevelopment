@@ -43,7 +43,7 @@
             </li>
         </ul>
         <hr>
-        <a class="dropdown-item border border-2 rounded text-center " href="{{ route('logout') }}">
+        <a class="dropdown-item border border-2 rounded text-center" href="{{ route('logout') }}">
             {{ __('ログアウト') }}
         </a>
     </div>
