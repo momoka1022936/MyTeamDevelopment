@@ -27,8 +27,8 @@ https://my-stocksystem.herokuapp.com/login
 
 ## テスト用アカウント
 
-メールアドレス：test@gmail.com  
-パスワード：testtest  
+メールアドレス：test83782@gmail.com  
+パスワード：test83782  
 
 ## 環境
 
